@@ -1,15 +1,7 @@
-import { Mark } from "../Mark";
-import Link from "next/link";
-
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-bg-base px-6 py-16">
+    <div className="px-5 py-16 sm:px-8">
       <div className="mx-auto max-w-2xl">
-        <Link href="/" className="mb-8 flex items-center gap-2">
-          <Mark size={24} />
-          <span className="font-display text-sm font-bold text-text-primary">PROTOCOL</span>
-        </Link>
-
         <h1 className="mb-2 text-2xl font-medium text-text-primary">Terms of service</h1>
         <p className="mb-8 text-sm text-text-tertiary">Last updated: 26 May 2026</p>
 
@@ -17,7 +9,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="mb-2 text-base font-medium text-text-primary">1. Agreement to terms</h2>
             <p>
-              By accessing or using Protocol ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.
+              By accessing or using Protocol (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.
             </p>
           </section>
 
@@ -34,7 +26,7 @@ export default function TermsOfService() {
               <li>You must provide accurate and complete information when creating an account</li>
               <li>You are responsible for maintaining the security of your account credentials</li>
               <li>You must be at least 16 years old to use the Service</li>
-              <li>Coach accounts are responsible for their athletes' data and must have appropriate consent to store personal and health information</li>
+              <li>Coach accounts are responsible for their athletes&rsquo; data and must have appropriate consent to store personal and health information</li>
             </ul>
           </section>
 
@@ -53,7 +45,7 @@ export default function TermsOfService() {
             <ul className="mt-2 list-inside list-disc space-y-1">
               <li>Use the Service for any unlawful purpose</li>
               <li>Share your account credentials with others</li>
-              <li>Attempt to access other users' data without authorisation</li>
+              <li>Attempt to access other users&rsquo; data without authorisation</li>
               <li>Interfere with the proper functioning of the Service</li>
               <li>Use automated systems to access the Service without permission</li>
             </ul>
@@ -83,7 +75,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="mb-2 text-base font-medium text-text-primary">9. Limitation of liability</h2>
             <p>
-              The Service is provided "as is" without warranties of any kind. We are not liable for any injuries, losses, or damages arising from the use of training programs created or delivered through Protocol.
+              The Service is provided &ldquo;as is&rdquo; without warranties of any kind. We are not liable for any injuries, losses, or damages arising from the use of training programs created or delivered through Protocol.
             </p>
           </section>
 

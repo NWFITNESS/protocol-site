@@ -1,15 +1,7 @@
-import { Mark } from "../Mark";
-import Link from "next/link";
-
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-bg-base px-6 py-16">
+    <div className="px-5 py-16 sm:px-8">
       <div className="mx-auto max-w-2xl">
-        <Link href="/" className="mb-8 flex items-center gap-2">
-          <Mark size={24} />
-          <span className="font-display text-sm font-bold text-text-primary">PROTOCOL</span>
-        </Link>
-
         <h1 className="mb-2 text-2xl font-medium text-text-primary">Privacy policy</h1>
         <p className="mb-8 text-sm text-text-tertiary">Last updated: 26 May 2026</p>
 
@@ -17,7 +9,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="mb-2 text-base font-medium text-text-primary">1. Introduction</h2>
             <p>
-              Protocol ("we", "us", "our") operates the Protocol web application. This policy explains how we collect, use, and protect your personal information when you use our service.
+              Protocol (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) operates the Protocol web application. This policy explains how we collect, use, and protect your personal information when you use our service.
             </p>
           </section>
 
