@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { MockScreen } from "@/components/ui/MockScreen";
+import { Screenshot } from "@/components/ui/Screenshot";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { FinalCta } from "@/components/site/FinalCta";
@@ -72,7 +72,7 @@ export default function WhyProtocolPage() {
               coaching tools still get wrong.
             </p>
           </div>
-          <MockScreen
+          <Screenshot
             src="/screens/session-percentages.png"
             alt="A session showing 5×3 @ 80% auto-calculated to an athlete's working weight"
           />

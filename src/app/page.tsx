@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { MockScreen } from "@/components/ui/MockScreen";
+import { Screenshot } from "@/components/ui/Screenshot";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { FinalCta } from "@/components/site/FinalCta";
@@ -13,6 +13,7 @@ import {
   TRUST_STATS,
   PRICES,
 } from "@/lib/site";
+import { formatTierPrice } from "@/lib/pricing";
 
 export default function Home() {
   return (
@@ -53,7 +54,7 @@ export default function Home() {
           </div>
 
           <div className="mx-auto mt-14 max-w-4xl">
-            <MockScreen
+            <Screenshot
               src="/screens/calendar-builder.png"
               alt="The Protocol coach calendar builder — colour-coded sessions across the week"
             />
@@ -119,7 +120,7 @@ export default function Home() {
                 <p className="mt-4 text-base leading-relaxed text-text-secondary">{s.body}</p>
               </div>
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                <MockScreen src={s.image} alt={s.imageAlt} variant={i === 3 ? "phone" : "browser"} />
+                <Screenshot src={s.image} alt={s.imageAlt} variant={i === 3 ? "phone" : "browser"} />
               </div>
             </div>
           </Section>
@@ -159,19 +160,26 @@ export default function Home() {
           subtitle="Start free for 14 days, then pay by how many athletes you coach. Athletes are always free."
         />
         <div className="mt-12 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {PRICES.map((t) => (
-            <div
-              key={t.id}
-              className={`rounded-xl border p-5 text-center ${
-                t.highlighted
-                  ? "border-accent/50 bg-accent-muted"
-                  : "border-border-subtle bg-bg-surface"
-              }`}
-            >
-              <div className="text-sm font-medium text-text-primary">{t.name}</div>
-              <div className="mt-1 nums text-xs text-text-tertiary">{t.athleteCap}</div>
-            </div>
-          ))}
+          {PRICES.map((t) => {
+            const price = formatTierPrice(t);
+            return (
+              <div
+                key={t.id}
+                className={`rounded-xl border p-5 text-center ${
+                  t.highlighted
+                    ? "border-accent/50 bg-accent-muted"
+                    : "border-border-subtle bg-bg-surface"
+                }`}
+              >
+                <div className="text-sm font-medium text-text-primary">{t.name}</div>
+                <div className="mt-2 nums text-lg font-semibold text-text-primary">
+                  {price.amount}
+                  <span className="text-xs font-normal text-text-tertiary">{price.suffix}</span>
+                </div>
+                <div className="mt-1 nums text-xs text-text-tertiary">{t.athleteCap}</div>
+              </div>
+            );
+          })}
         </div>
         <div className="mt-8 flex justify-center">
           <Button href="/pricing">

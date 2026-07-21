@@ -1,47 +1,15 @@
-"use client";
-
-import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { PRICES, SITE } from "@/lib/site";
 import { formatTierPrice } from "@/lib/pricing";
 
 export function PricingTiers() {
-  const [annual, setAnnual] = useState(true);
-  const period = annual ? "annual" : "monthly";
-
   return (
     <div>
-      {/* Billing toggle */}
-      <div className="flex items-center justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => setAnnual(false)}
-          className={`text-sm transition-colors ${!annual ? "text-text-primary" : "text-text-tertiary hover:text-text-secondary"}`}
-        >
-          Monthly
-        </button>
-        <button
-          type="button"
-          role="switch"
-          aria-checked={annual}
-          onClick={() => setAnnual((a) => !a)}
-          className="relative h-6 w-11 rounded-full border border-border-strong bg-bg-surface-raised transition-colors"
-          aria-label="Toggle annual billing"
-        >
-          <span
-            className={`absolute top-0.5 size-4 rounded-full bg-accent transition-transform ${annual ? "translate-x-5" : "translate-x-0.5"}`}
-          />
-        </button>
-        <span className={`text-sm transition-colors ${annual ? "text-text-primary" : "text-text-tertiary"}`}>
-          Annual <span className="text-accent">(save)</span>
-        </span>
-      </div>
-
-      {/* Tier cards */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {PRICES.map((t) => {
-          const price = formatTierPrice(t, period);
+          const price = formatTierPrice(t);
+          const contact = t.monthly === null;
           return (
             <div
               key={t.id}
@@ -63,14 +31,19 @@ export function PricingTiers() {
                   <span className="text-xs text-text-tertiary">{price.suffix}</span>
                 )}
               </div>
-              <div className="mt-1 nums text-xs text-text-tertiary">{t.athleteCap}</div>
-              <p className="mt-3 flex-1 text-xs leading-relaxed text-text-secondary">{t.tagline}</p>
+              <div className="mt-1 nums text-xs text-text-tertiary">
+                {t.perAthlete ?? "Flat rate"}
+              </div>
+              <div className="mt-3 border-t border-border-subtle/60 pt-3 nums text-xs text-text-secondary">
+                {t.athleteCap}
+              </div>
+              <p className="mt-2 flex-1 text-xs leading-relaxed text-text-tertiary">{t.tagline}</p>
               <Button
-                href={t.monthly === null ? "mailto:hello@protocolapp.uk" : SITE.signupUrl}
+                href={contact ? "mailto:hello@protocolapp.uk" : SITE.signupUrl}
                 variant={t.highlighted ? "primary" : "outline"}
                 className="mt-4 w-full"
               >
-                {t.monthly === null ? "Contact us" : "Start free"}
+                {contact ? "Contact us" : "Start free"}
               </Button>
             </div>
           );

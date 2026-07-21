@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { MockScreen } from "@/components/ui/MockScreen";
+import { Screenshot } from "@/components/ui/Screenshot";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Eyebrow } from "@/components/brand";
@@ -69,7 +69,7 @@ export default async function NichePage({ params }: Props) {
               </div>
               <p className="mt-4 text-sm text-text-tertiary">{SITE.trialMicrocopy}</p>
             </div>
-            <MockScreen src="/screens/calendar-builder.png" alt={`Protocol for ${n.audience}`} />
+            <Screenshot src="/screens/calendar-builder.png" alt={`Protocol for ${n.audience}`} />
           </div>
         </Container>
       </section>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { MockScreen } from "@/components/ui/MockScreen";
+import { Screenshot } from "@/components/ui/Screenshot";
 import { Icon } from "@/components/ui/Icon";
 import { Eyebrow } from "@/components/brand";
 import { Section } from "@/components/site/Section";
@@ -65,7 +65,7 @@ export default async function FeatureDeepDive({ params }: Props) {
               <p className="mt-4 text-base leading-relaxed text-text-secondary">{s.body}</p>
             </div>
             <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-              <MockScreen src={s.image} alt={`${page.title}: ${s.title}`} />
+              <Screenshot src={s.image} alt={`${page.title}: ${s.title}`} />
             </div>
           </div>
         </Section>

@@ -1,16 +1,9 @@
-import { PRICING_CONFIRMED, type PriceTier } from "./site";
+import type { PriceTier } from "./site";
 
-/**
- * Formats a tier's price. While PRICING_CONFIRMED is false the amounts in
- * site.ts are placeholders, so we render "£—" rather than a misleading "£0".
- * Null amount = a "Custom" / contact tier.
- */
-export function formatTierPrice(
-  tier: PriceTier,
-  period: "monthly" | "annual",
-): { amount: string; suffix: string } {
-  const value = period === "annual" ? tier.annual : tier.monthly;
-  if (value === null) return { amount: "Custom", suffix: "" };
-  if (!PRICING_CONFIRMED) return { amount: "£—", suffix: "/mo" };
-  return { amount: `£${value}`, suffix: "/mo" };
+/** "£12.50" / "£23" / "Custom". Whole pounds show no decimals. */
+export function formatTierPrice(tier: PriceTier): { amount: string; suffix: string } {
+  if (tier.monthly === null) return { amount: "Custom", suffix: "" };
+  const v = tier.monthly;
+  const amount = Number.isInteger(v) ? `£${v}` : `£${v.toFixed(2)}`;
+  return { amount, suffix: "/mo" };
 }

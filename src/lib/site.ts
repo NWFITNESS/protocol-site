@@ -280,29 +280,30 @@ export const NICHES: Niche[] = [
 /* ------------------------------------------------------------------ */
 
 /**
- * TODO(founder): replace the placeholder amounts with real prices before
- * publishing /pricing. `monthly` / `annual` are per-month GBP figures.
- * `annual` should be the effective monthly cost when billed annually.
- * Set `PRICING_CONFIRMED = true` once these are real to drop the placeholder note.
+ * Prices mirror the app's plan tiers (protocol repo `src/lib/plans.ts`) — GBP per
+ * month, athletes-billed with a per-athlete rate that steps down as the tier
+ * grows. The app is monthly-only (no annual tier), so the site is too.
+ * `PRICING_CONFIRMED` hides the placeholder note; keep in sync with the app if
+ * plan prices change, and confirm before the paywall goes live.
  */
-export const PRICING_CONFIRMED = false;
+export const PRICING_CONFIRMED = true;
 
 export interface PriceTier {
   id: string;
   name: string;
   athleteCap: string;
   monthly: number | null; // GBP/month, null = "Contact us"
-  annual: number | null; // GBP/month billed annually
+  perAthlete: string | null; // honest per-athlete rate subtext
   tagline: string;
   highlighted?: boolean;
 }
 
 export const PRICES: PriceTier[] = [
-  { id: "5", name: "Starter", athleteCap: "Up to 5 athletes", monthly: 0, annual: 0, tagline: "Prove the model with your first athletes." },
-  { id: "10", name: "Coach", athleteCap: "Up to 10 athletes", monthly: 0, annual: 0, tagline: "For a growing one-to-one roster." },
-  { id: "25", name: "Studio", athleteCap: "Up to 25 athletes", monthly: 0, annual: 0, tagline: "Scale groups and 1-to-1 together.", highlighted: true },
-  { id: "50", name: "Pro", athleteCap: "Up to 50 athletes", monthly: 0, annual: 0, tagline: "Serious volume, one system." },
-  { id: "unlimited", name: "Unlimited", athleteCap: "Unlimited athletes", monthly: null, annual: null, tagline: "No ceiling on your roster." },
+  { id: "5", name: "Starter", athleteCap: "Up to 5 athletes", monthly: 12.5, perAthlete: "£2.50 per athlete", tagline: "Prove the model with your first athletes." },
+  { id: "10", name: "Coach", athleteCap: "Up to 10 athletes", monthly: 23, perAthlete: "£2.30 per athlete", tagline: "For a growing one-to-one roster." },
+  { id: "25", name: "Studio", athleteCap: "Up to 25 athletes", monthly: 52.5, perAthlete: "£2.10 per athlete", tagline: "Scale groups and 1-to-1 together.", highlighted: true },
+  { id: "50", name: "Pro", athleteCap: "Up to 50 athletes", monthly: 92.5, perAthlete: "£1.85 per athlete", tagline: "Serious volume, one system." },
+  { id: "unlimited", name: "Unlimited", athleteCap: "Unlimited athletes", monthly: 149, perAthlete: null, tagline: "No ceiling on your roster." },
 ];
 
 /** Everything included in every plan. */
