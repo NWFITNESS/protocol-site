@@ -120,7 +120,7 @@ export default function Home() {
                 <p className="mt-4 text-base leading-relaxed text-text-secondary">{s.body}</p>
               </div>
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                <Screenshot src={s.image} alt={s.imageAlt} variant={i === 3 ? "phone" : "browser"} />
+                <Screenshot src={s.image} alt={s.imageAlt} variant={i >= 2 ? "phone" : "browser"} />
               </div>
             </div>
           </Section>

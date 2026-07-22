@@ -97,14 +97,14 @@ export const SPOTLIGHTS: Spotlight[] = [
     eyebrow: "Metrics & PRs",
     title: "Progress you can actually see",
     body: "PRs, logs, benchmarks and bodyweight in one place per athlete. New maxes are detected from completed sessions automatically, celebrated in-app, and ready to share.",
-    image: "/screens/metrics.png",
-    imageAlt: "A Protocol athlete's metrics page with history graphs and PRs",
+    image: "/screens/metrics.jpg",
+    imageAlt: "A Protocol athlete's metrics page with personal records",
   },
   {
     eyebrow: "The athlete app",
     title: "An app athletes actually open",
     body: "A fast, phone-first experience: today's session with working weights, one-tap logging, a built-in gym timer, streaks, nutrition and health — installable to the home screen.",
-    image: "/screens/athlete-home.png",
+    image: "/screens/athlete-home.jpg",
     imageAlt: "The Protocol athlete home screen on a phone",
   },
 ];
@@ -139,6 +139,7 @@ export interface FeatureSection {
   tagline: string;
   body: string;
   image?: string;
+  variant?: "browser" | "phone";
 }
 export interface FeaturePage {
   slug: string;
@@ -167,7 +168,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     subtitle: "Every number that matters, in one place per athlete.",
     intro: "Maxes, rep-maxes, benchmark results and bodyweight — tracked, graphed and celebrated automatically.",
     sections: [
-      { title: "Auto PR detection", tagline: "New maxes, spotted for you.", body: "When an athlete completes a session, Protocol detects new maxes and rep-maxes, flags the PR and updates their working weights everywhere.", image: "/screens/metrics.png" },
+      { title: "Auto PR detection", tagline: "New maxes, spotted for you.", body: "When an athlete completes a session, Protocol detects new maxes and rep-maxes, flags the PR and updates their working weights everywhere.", image: "/screens/metrics.jpg", variant: "phone" },
       { title: "History graphs", tagline: "See the trajectory.", body: "Every metric has a history graph so you and the athlete can see progress over months, not just the last session.", image: "/screens/metrics-graph.png" },
       { title: "Shareable milestones", tagline: "Celebrate the wins.", body: "PRs get an in-app celebration and a share card — retention you can feel.", image: "/screens/pr-card.png" },
     ],

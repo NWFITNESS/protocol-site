@@ -26,5 +26,11 @@
  *   /screens/team-invite.png         — team invite flow
  */
 export const READY_SCREENS = new Set<string>([
-  // Add "/screens/xxx.png" here as real captures land.
+  "/screens/calendar-builder.png",
+  "/screens/session-percentages.png",
+  "/screens/metrics.jpg",
+  "/screens/athlete-home.jpg",
+  "/screens/nutrition-targets.png",
+  "/screens/storefront.png",
+  "/screens/messaging.png",
 ]);

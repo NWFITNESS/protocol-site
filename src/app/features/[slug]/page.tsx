@@ -65,7 +65,7 @@ export default async function FeatureDeepDive({ params }: Props) {
               <p className="mt-4 text-base leading-relaxed text-text-secondary">{s.body}</p>
             </div>
             <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-              <Screenshot src={s.image} alt={`${page.title}: ${s.title}`} />
+              <Screenshot src={s.image} alt={`${page.title}: ${s.title}`} variant={s.variant ?? "browser"} />
             </div>
           </div>
         </Section>
