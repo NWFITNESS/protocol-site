@@ -1,4 +1,4 @@
-type MarkSize = 16 | 24 | 32 | 48 | 64;
+type MarkSize = 16 | 24 | 32 | 40 | 48 | 56 | 64;
 
 interface MarkProps {
   size?: MarkSize;
@@ -10,7 +10,7 @@ export function Mark({ size = 32, className = "" }: MarkProps) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 1500 1500"
+      viewBox="380 380 740 740"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}

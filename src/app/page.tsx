@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Mark } from "@/app/Mark";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
 import { HeroForm } from "@/components/HeroForm";
@@ -50,11 +51,10 @@ const FEATURES = [
 ];
 
 const APP_CHIPS = [
-  { icon: Icons.grid, label: "Today's session", pos: "left-[-9%] top-[10%]", speed: 0.3 },
-  { icon: Icons.clipboard, label: "Habits & check-ins", pos: "right-[-11%] top-[26%]", speed: 0.2 },
-  { icon: Icons.trophy, label: "PRs auto-tracked", pos: "left-[-13%] top-[50%]", speed: 0.26 },
-  { icon: Icons.utensils, label: "Nutrition targets", pos: "right-[-9%] top-[60%]", speed: 0.34 },
-  { icon: Icons.timer, label: "Built-in timer", pos: "left-[-7%] bottom-[7%]", speed: 0.22 },
+  { icon: Icons.grid, label: "Today's session", pos: "left-0 top-[7%]" },
+  { icon: Icons.utensils, label: "Nutrition targets", pos: "right-0 top-[19%]" },
+  { icon: Icons.trophy, label: "PRs auto-tracked", pos: "left-0 bottom-[22%]" },
+  { icon: Icons.timer, label: "Built-in timer", pos: "right-0 bottom-[9%]" },
 ];
 
 const ATHLETE_BULLETS = [
@@ -108,30 +108,30 @@ export default function Home() {
               Early access opening soon
             </span>
 
-            {/* Invisible copy reserves the exact box so the scramble (which has
-                different glyph widths) can't reflow and bounce the layout. */}
-            <div className="relative mt-5">
-              <span
-                aria-hidden
-                className="invisible block text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
-              >
-                Coaching software, built by coaches.
-              </span>
+            {/* Brand moment: the Protocol wordmark decrypts in. One word, so it
+                can't reflow/overlap like a wrapping sentence; the cobalt→violet
+                gradient reveals as each letter locks. */}
+            <div className="mt-7 flex items-center justify-center gap-3 sm:gap-4">
+              <Mark size={48} className="hidden sm:block" />
               <DecryptText
-                as="h1"
-                text="Coaching software, built by coaches."
+                as="span"
+                text="PROTOCOL"
                 variant="display"
                 trigger="mount"
                 loop={false}
                 retriggerOnHover={false}
-                stagger={40}
-                speed={36}
-                startDelay={250}
+                stagger={72}
+                speed={34}
+                startDelay={200}
                 seed={7}
-                className="hero-decrypt absolute inset-0 text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
+                className="hero-decrypt inline-block font-display text-[2.6rem] font-bold leading-none tracking-[0.04em] sm:text-6xl"
               />
             </div>
-            <p className="mx-auto mt-4 max-w-md text-base text-text-secondary sm:text-lg">
+
+            <h1 className="mt-6 text-balance text-xl font-semibold text-text-primary sm:text-2xl">
+              Coaching software, built by coaches.
+            </h1>
+            <p className="mx-auto mt-3 max-w-md text-sm text-text-secondary sm:text-base">
               The all-in-one platform to program, track and grow your online fitness, nutrition and
               wellbeing coaching. Join the waitlist for early access and a 14-day free trial.
             </p>
@@ -225,24 +225,24 @@ export default function Home() {
             </ul>
           </Reveal>
 
-          <Reveal delay={80} className="relative">
+          <Reveal delay={80} className="relative mx-auto w-full max-w-sm lg:max-w-none">
             <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.2),transparent_62%)] blur-2xl" />
-            <div className="relative mx-auto flex w-fit justify-center">
+            <div className="flex justify-center">
               <AthletePhone />
-              {APP_CHIPS.map((c, i) => (
-                <div key={c.label} className={`absolute hidden lg:block ${c.pos}`}>
-                  <div
-                    className="floaty glass flex items-center gap-2 rounded-xl px-3 py-2 card-elevation"
-                    style={{ animationDelay: `${i * 0.6}s` }}
-                  >
-                    <span className="flex size-7 items-center justify-center rounded-lg bg-accent-muted text-accent">
-                      <c.icon className="size-4" />
-                    </span>
-                    <span className="whitespace-nowrap text-[13px] font-medium text-text-primary">{c.label}</span>
-                  </div>
-                </div>
-              ))}
             </div>
+            {/* Labelled feature chips sit in the side gutters (desktop only). */}
+            {APP_CHIPS.map((c, i) => (
+              <div
+                key={c.label}
+                className={`floaty absolute hidden items-center gap-2 rounded-xl px-3 py-2 glass card-elevation lg:flex ${c.pos}`}
+                style={{ animationDelay: `${i * 0.6}s` }}
+              >
+                <span className="flex size-7 items-center justify-center rounded-lg bg-accent-muted text-accent">
+                  <c.icon className="size-4" />
+                </span>
+                <span className="whitespace-nowrap text-[13px] font-medium text-text-primary">{c.label}</span>
+              </div>
+            ))}
           </Reveal>
         </div>
       </Section>

@@ -37,12 +37,12 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-2.5 ${className}`}
+      className={`inline-flex items-center gap-2 ${className}`}
       aria-label="Protocol home"
     >
-      <Mark size={32} />
+      <Mark size={40} />
       <span
-        className="text-lg font-semibold tracking-wide text-text-primary"
+        className="text-xl font-semibold tracking-wide text-text-primary"
         style={{ fontFamily: "var(--font-orbitron)" }}
       >
         PROTOCOL
