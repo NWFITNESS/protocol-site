@@ -124,7 +124,7 @@ export default function Home() {
               variant="display"
               trigger="mount"
               loop={false}
-              retriggerOnHover
+              retriggerOnHover={false}
               stagger={40}
               speed={36}
               startDelay={250}
