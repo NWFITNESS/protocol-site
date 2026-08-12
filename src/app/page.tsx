@@ -34,11 +34,10 @@ const Icons = {
 const WORDS = ["Programming", "Nutrition", "Check-ins", "Metrics & PRs", "Messaging", "Payments", "All-access packages", "Workout timer"];
 
 const PHOTOS = [
-  { src: "/photos/a3.webp", caption: "Every rep tracked", span: "row-span-2" },
-  { src: "/photos/a1.webp", caption: "Made to compete", span: "col-span-2" },
-  { src: "/photos/a4.webp", caption: "Progress they can see", span: "row-span-2" },
-  { src: "/photos/a2.webp", caption: "Built together", span: "col-span-2" },
-  { src: "/photos/a5.webp", caption: "Strength, by design", span: "row-span-2" },
+  { src: "/photos/a1.webp", caption: "Made to compete" },
+  { src: "/photos/a3.webp", caption: "Every rep tracked" },
+  { src: "/photos/a4.webp", caption: "Progress they can see" },
+  { src: "/photos/a2.webp", caption: "Built together" },
 ];
 
 const CHIPS = [
@@ -244,17 +243,17 @@ export default function Home() {
             up, log the work, and keep coming back.
           </p>
         </Reveal>
-        <Reveal className="mt-12 grid auto-rows-[150px] grid-flow-dense grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4">
+        <Reveal className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
           {PHOTOS.map((p) => (
             <div
               key={p.src}
-              className={`group relative overflow-hidden rounded-2xl border border-border-subtle ${p.span}`}
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-subtle"
             >
               <img
                 src={p.src}
                 alt="Athlete training"
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-base/85 via-transparent to-transparent" />
               <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
