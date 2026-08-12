@@ -39,7 +39,7 @@ export function Footer() {
           </Link>
         </div>
         <p className="text-xs text-text-tertiary/70">
-          © {new Date().getFullYear()} Protocol. All rights reserved.
+          © {new Date().getFullYear()} Protocol. All rights reserved. · Photography by OAH Media.
         </p>
       </div>
     </footer>

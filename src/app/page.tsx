@@ -33,6 +33,14 @@ const Icons = {
 /* ── Content ───────────────────────────────────────────────────────────────── */
 const WORDS = ["Programming", "Nutrition", "Check-ins", "Metrics & PRs", "Messaging", "Payments", "All-access packages", "Workout timer"];
 
+const PHOTOS = [
+  { src: "/photos/a3.webp", caption: "Every rep tracked", span: "row-span-2" },
+  { src: "/photos/a1.webp", caption: "Made to compete", span: "col-span-2" },
+  { src: "/photos/a4.webp", caption: "Progress they can see", span: "row-span-2" },
+  { src: "/photos/a2.webp", caption: "Built together", span: "col-span-2" },
+  { src: "/photos/a5.webp", caption: "Strength, by design", span: "row-span-2" },
+];
+
 const CHIPS = [
   { icon: Icons.trophy, title: "New PR logged", sub: "Back squat · 140 kg", pos: "left-[3%] top-[24%]", speed: 0.32 },
   { icon: Icons.utensils, title: "Macros on target", sub: "212p · 240c · 68f", pos: "right-[3%] top-[30%]", speed: 0.22 },
@@ -82,21 +90,19 @@ export default function Home() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden py-20">
-        {/* animated orb, parallaxed, behind everything */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <Parallax speed={0.16} className="flex items-center justify-center">
-            <div className="orb">
-              <div className="orb-glow" />
-              <div className="orb-ring" style={{ animationDelay: "0s" }} />
-              <div className="orb-ring" style={{ animationDelay: "1.4s" }} />
-              <div className="orb-ring" style={{ animationDelay: "2.8s" }} />
-              <div className="orb-spin" />
-              <div className="orb-core" />
-            </div>
-          </Parallax>
+        {/* athlete photo backdrop */}
+        <img
+          src="/photos/hero.webp"
+          alt="Athlete training in the gym"
+          fetchPriority="high"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        {/* brand + legibility overlays */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-bg-base/85 via-bg-base/45 to-bg-base" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_38%,rgba(59,130,246,0.22),transparent_62%)]" />
+          <div className="aurora absolute left-1/2 top-[38%] h-[380px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-[130px]" />
         </div>
-        {/* vignette to keep the card legible over the orb */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_28%,#0a0a0b_76%)]" />
 
         {/* floating product chips (desktop only) */}
         {CHIPS.map((c) => (
@@ -223,6 +229,38 @@ export default function Home() {
               </Parallax>
             </div>
           </div>
+        </Reveal>
+      </Section>
+
+      {/* ── Athletes band ───────────────────────────────────────────────── */}
+      <Section>
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <Eyebrow>For the athletes</Eyebrow>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+            You coach the athlete. Protocol handles the rest.
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            Every session, target and check-in in one app your athletes actually open, so they show
+            up, log the work, and keep coming back.
+          </p>
+        </Reveal>
+        <Reveal className="mt-12 grid auto-rows-[150px] grid-flow-dense grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4">
+          {PHOTOS.map((p) => (
+            <div
+              key={p.src}
+              className={`group relative overflow-hidden rounded-2xl border border-border-subtle ${p.span}`}
+            >
+              <img
+                src={p.src}
+                alt="Athlete training"
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-base/85 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
+              <span className="absolute bottom-3 left-3 text-xs font-medium text-white/90">{p.caption}</span>
+            </div>
+          ))}
         </Reveal>
       </Section>
 

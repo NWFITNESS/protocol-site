@@ -1,25 +1,38 @@
 /**
- * A stylised browser showing a representative Protocol calendar builder (week
- * columns with coloured block cards). Pure markup, decorative → aria-hidden.
+ * A stylised browser showing a representative Protocol coach calendar — sidebar
+ * nav + bracket "block cards" per section (rest, habits, warm-up, metcon,
+ * strength) with RPE/Cap badges, mirroring the real builder. Decorative.
  */
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const NAV = [
+  ["Dashboard", false],
+  ["Athletes", true],
+  ["Messages", false],
+  ["Programs", false],
+  ["Nutrition", false],
+  ["Metrics", false],
+] as const;
 
-// [day index] → blocks. Kept sparse + representative of real programming.
-const BLOCKS: Record<number, { label: string; tone: string }[]> = {
-  0: [{ label: "Lower · Strength", tone: "accent" }],
-  1: [{ label: "Upper · Push", tone: "violet" }],
-  2: [{ label: "Conditioning", tone: "emerald" }],
-  3: [{ label: "Lower · Power", tone: "accent" }],
-  4: [{ label: "Upper · Pull", tone: "violet" }],
-  5: [{ label: "Long run", tone: "amber" }],
-};
-
-const TONES: Record<string, string> = {
-  accent: "border-l-accent bg-accent/10 text-accent",
-  violet: "border-l-[#7c3aed] bg-[#7c3aed]/12 text-[#a78bfa]",
-  emerald: "border-l-emerald-500 bg-emerald-500/10 text-emerald-300",
-  amber: "border-l-amber-500 bg-amber-500/10 text-amber-300",
-};
+function Block({
+  tone,
+  title,
+  children,
+  badge,
+}: {
+  tone: string;
+  title: string;
+  children?: React.ReactNode;
+  badge?: string;
+}) {
+  return (
+    <div className={`rounded-md border-l-2 bg-bg-surface-raised/60 p-1.5 ${tone}`}>
+      <div className="flex items-center gap-1">
+        <span className="text-[9px] font-semibold text-text-primary">{title}</span>
+        {badge && <span className="nums ml-auto rounded bg-black/30 px-1 text-[8px] text-text-secondary">{badge}</span>}
+      </div>
+      {children && <div className="mt-0.5 text-[8px] leading-tight text-text-tertiary">{children}</div>}
+    </div>
+  );
+}
 
 export function BrowserMock({ className = "" }: { className?: string }) {
   return (
@@ -40,37 +53,84 @@ export function BrowserMock({ className = "" }: { className?: string }) {
         </div>
       </div>
 
-      {/* calendar grid */}
-      <div className="p-3 sm:p-4">
-        <div className="mb-2 flex items-center justify-between px-1">
-          <span className="text-xs font-semibold text-text-primary">August · Week 3</span>
-          <span className="nums rounded-md bg-accent-muted px-2 py-0.5 text-[10px] font-medium text-accent">
-            5 athletes
-          </span>
-        </div>
-        <div className="grid grid-cols-7 gap-1.5">
-          {DAYS.map((d, i) => (
-            <div key={d} className="min-h-[92px] rounded-lg bg-bg-base p-1.5">
-              <p className="mb-1.5 px-0.5 text-[9px] font-medium uppercase tracking-wide text-text-tertiary">
-                {d}
-              </p>
-              <div className="flex flex-col gap-1">
-                {(BLOCKS[i] ?? []).map((b, j) => (
-                  <div
-                    key={j}
-                    className={`rounded border-l-2 px-1.5 py-1 text-[9px] font-medium leading-tight ${TONES[b.tone]}`}
-                  >
-                    {b.label}
-                  </div>
-                ))}
-                {!BLOCKS[i] && (
-                  <div className="rounded border border-dashed border-border-subtle px-1.5 py-1 text-center text-[9px] text-text-tertiary">
-                    Rest
-                  </div>
-                )}
-              </div>
+      <div className="flex">
+        {/* sidebar */}
+        <div className="hidden w-28 shrink-0 flex-col gap-1 border-r border-border-subtle bg-bg-base p-2.5 sm:flex">
+          <div className="mb-2 flex items-center gap-1.5">
+            <span className="font-bold text-accent" style={{ fontFamily: "var(--font-orbitron)" }}>
+              [P]
+            </span>
+            <span className="text-[10px] font-semibold tracking-wide text-text-secondary">FORGED</span>
+          </div>
+          {NAV.map(([label, active]) => (
+            <div
+              key={label}
+              className={`flex items-center gap-1.5 rounded px-1.5 py-1 text-[9px] ${
+                active ? "bg-accent-muted text-accent" : "text-text-tertiary"
+              }`}
+            >
+              <span className={`size-1.5 rounded-full ${active ? "bg-accent" : "bg-border-strong"}`} />
+              {label}
             </div>
           ))}
+        </div>
+
+        {/* calendar */}
+        <div className="min-w-0 flex-1 p-2.5 sm:p-3">
+          <div className="mb-2 flex items-center justify-between px-0.5">
+            <span className="text-[11px] font-semibold text-text-primary">June 2026</span>
+            <div className="flex overflow-hidden rounded-md border border-border-subtle text-[9px]">
+              <span className="px-2 py-0.5 text-text-tertiary">Day</span>
+              <span className="bg-accent px-2 py-0.5 font-medium text-white">Month</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-4 gap-1.5">
+            {["Mon", "Tue", "Wed", "Thu"].map((d) => (
+              <p key={d} className="px-0.5 text-[8px] font-medium uppercase tracking-wide text-text-tertiary">
+                {d}
+              </p>
+            ))}
+
+            {/* Mon */}
+            <div className="flex flex-col gap-1.5">
+              <Block tone="border-l-pink-500 text-pink-300" title="Rest day" />
+              <Block tone="border-l-emerald-500 text-emerald-300" title="Habits">
+                Steps · Water · Protein
+              </Block>
+            </div>
+
+            {/* Tue */}
+            <div className="flex flex-col gap-1.5">
+              <Block tone="border-l-accent" title="Lower · Strength" badge="RPE 7">
+                Back squat 5×5 @82%
+              </Block>
+            </div>
+
+            {/* Wed — rich session */}
+            <div className="flex flex-col gap-1.5">
+              <div className="rounded-md border border-border-subtle bg-bg-surface-raised/40 p-1">
+                <p className="mb-1 px-0.5 text-[8px] font-semibold text-text-primary">Week 2 · Press</p>
+                <div className="flex flex-col gap-1">
+                  <Block tone="border-l-emerald-500 text-emerald-300" title="Warm-up" />
+                  <Block tone="border-l-accent" title="Metcon" badge="Cap 8:00">
+                    21-15-9 · RPE 8
+                  </Block>
+                  <Block tone="border-l-[#7c3aed] text-[#a78bfa]" title="Strict press" badge="@75%">
+                    5×4 · 21X1
+                  </Block>
+                </div>
+              </div>
+            </div>
+
+            {/* Thu */}
+            <div className="flex flex-col gap-1.5">
+              <Block tone="border-l-amber-500 text-amber-300" title="Conditioning" badge="30:00">
+                Zone 2 · bike
+              </Block>
+              <Block tone="border-l-border-strong text-text-tertiary" title="Daily check-in" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
