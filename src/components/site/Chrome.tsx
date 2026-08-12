@@ -7,13 +7,13 @@ import { Logo } from "@/components/brand";
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border-subtle/60 bg-bg-base/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:px-8">
         <Logo />
         <a
           href="#waitlist"
-          className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+          className="inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-lg bg-accent px-4 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
         >
-          Join the waitlist
+          Join<span className="hidden sm:inline">&nbsp;the waitlist</span>
         </a>
       </div>
     </header>

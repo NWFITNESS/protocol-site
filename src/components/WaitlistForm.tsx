@@ -402,7 +402,7 @@ export function WaitlistForm() {
         </div>
       </div>
 
-      <p className="mt-4 text-center text-xs text-text-tertiary">
+      <p className="mt-4 hidden text-center text-xs text-text-tertiary sm:block">
         Press <kbd className="rounded border border-border-subtle bg-bg-surface px-1.5 py-0.5">Enter</kbd> to continue
       </p>
     </div>
