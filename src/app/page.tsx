@@ -1,15 +1,22 @@
 import type { ReactNode } from "react";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
+import { Parallax } from "@/components/Parallax";
+import { HeroForm } from "@/components/HeroForm";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { PhoneMock } from "@/components/mock/PhoneMock";
+import { BrowserMock } from "@/components/mock/BrowserMock";
 
 /* ── Inline line icons (no icon dependency on this branch) ─────────────────── */
 type IconProps = { className?: string };
-const svg = (children: ReactNode) => ({ className = "size-6" }: IconProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
-    {children}
-  </svg>
-);
+const svg = (children: ReactNode) => {
+  const C = ({ className = "size-6" }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      {children}
+    </svg>
+  );
+  return C;
+};
 const Icons = {
   users: svg(<><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></>),
   layers: svg(<><path d="m12 2 9 5-9 5-9-5 9-5Z" /><path d="m3 12 9 5 9-5" /><path d="m3 17 9 5 9-5" /></>),
@@ -20,12 +27,18 @@ const Icons = {
   timer: svg(<><line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" /></>),
   trophy: svg(<><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z" /></>),
   store: svg(<><path d="M2 7l1.5-4h17L22 7M4 7v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7M2 7h20M9 21v-6h6v6" /></>),
-  message: svg(<><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /></>),
   spark: svg(<><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" /></>),
 };
 
 /* ── Content ───────────────────────────────────────────────────────────────── */
 const WORDS = ["Programming", "Nutrition", "Check-ins", "Metrics & PRs", "Messaging", "Payments", "All-access packages", "Workout timer"];
+
+const CHIPS = [
+  { icon: Icons.trophy, title: "New PR logged", sub: "Back squat · 140 kg", pos: "left-[3%] top-[24%]", speed: 0.32 },
+  { icon: Icons.utensils, title: "Macros on target", sub: "212p · 240c · 68f", pos: "right-[3%] top-[30%]", speed: 0.22 },
+  { icon: Icons.clipboard, title: "Check-in submitted", sub: "Weekly form · Ellie", pos: "left-[7%] bottom-[16%]", speed: 0.26 },
+  { icon: Icons.store, title: "New sale", sub: "All-access · £52.50", pos: "right-[6%] bottom-[20%]", speed: 0.36 },
+];
 
 const VALUES = [
   { icon: Icons.users, title: "Built by coaches, not developers", body: "Every feature comes from real coaching, not a product roadmap. If it doesn't help you coach, it isn't here." },
@@ -56,7 +69,6 @@ const FAQ = [
   { q: "How does the 2 months free work?", a: "After you join, you'll get a personal share link. When a coach signs up through it and starts their trial, we add two months to your plan, free." },
 ];
 
-/* ── Layout helpers ──────────────────────────────────────────────────────── */
 function Section({ children, className = "", id }: { children: ReactNode; className?: string; id?: string }) {
   return (
     <section id={id} className={`py-20 sm:py-28 ${className}`}>
@@ -69,62 +81,95 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        {/* ambient cobalt aurora */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="aurora absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.10),transparent_60%)]" />
-        </div>
-
-        <div className="mx-auto max-w-6xl px-5 pb-16 pt-20 text-center sm:px-8 sm:pb-24 sm:pt-28">
-          <div className="rise">
-            <Eyebrow>Built by a coach, for coaches</Eyebrow>
-          </div>
-          <h1
-            className="rise mx-auto mt-6 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-6xl"
-            style={{ animationDelay: "60ms" }}
-          >
-            Coaching software, finally built by coaches.
-          </h1>
-          <p
-            className="rise mx-auto mt-6 max-w-2xl text-lg text-text-secondary sm:text-xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            Protocol brings your programming, tracking, nutrition, messaging and payments into one
-            precise platform for online fitness, nutrition and wellbeing coaches. Join the waitlist
-            for early access and a 14-day free trial.
-          </p>
-          <div className="rise mt-9 flex flex-col items-center gap-4" style={{ animationDelay: "180ms" }}>
-            <a
-              href="#waitlist"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-accent/20 transition-all hover:bg-accent-hover hover:shadow-accent/30"
-            >
-              Join the waitlist
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </a>
-            <p className="text-sm text-text-tertiary">14-day free trial. No card required.</p>
-          </div>
-        </div>
-
-        {/* value marquee strip */}
-        <div className="relative border-y border-border-subtle/60 bg-bg-surface/30 py-4">
-          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            <div className="marquee-track flex shrink-0 items-center gap-10 pr-10 text-sm font-medium uppercase tracking-widest text-text-tertiary">
-              {[...WORDS, ...WORDS].map((w, i) => (
-                <span key={i} className="flex items-center gap-10">
-                  {w}
-                  <span className="text-accent">/</span>
-                </span>
-              ))}
+      <section className="relative flex min-h-[92vh] items-center overflow-hidden py-20">
+        {/* animated orb, parallaxed, behind everything */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+          <Parallax speed={0.16} className="flex items-center justify-center">
+            <div className="orb">
+              <div className="orb-glow" />
+              <div className="orb-ring" style={{ animationDelay: "0s" }} />
+              <div className="orb-ring" style={{ animationDelay: "1.4s" }} />
+              <div className="orb-ring" style={{ animationDelay: "2.8s" }} />
+              <div className="orb-spin" />
+              <div className="orb-core" />
             </div>
+          </Parallax>
+        </div>
+        {/* vignette to keep the card legible over the orb */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_28%,#0a0a0b_76%)]" />
+
+        {/* floating product chips (desktop only) */}
+        {CHIPS.map((c) => (
+          <div key={c.title} className={`pointer-events-none absolute z-0 hidden xl:block ${c.pos}`}>
+            <Parallax speed={c.speed}>
+              <div className="floaty glass flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 card-elevation">
+                <span className="flex size-8 items-center justify-center rounded-lg bg-accent-muted text-accent">
+                  <c.icon className="size-4" />
+                </span>
+                <div className="leading-tight">
+                  <p className="text-[13px] font-semibold text-text-primary">{c.title}</p>
+                  <p className="nums text-[11px] text-text-tertiary">{c.sub}</p>
+                </div>
+              </div>
+            </Parallax>
+          </div>
+        ))}
+
+        {/* hero card */}
+        <div className="relative z-10 mx-auto w-full max-w-xl px-5">
+          <div className="glass rise rounded-3xl p-8 text-center card-elevation sm:p-10">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-base/50 px-3 py-1 text-xs font-medium text-text-secondary">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-70" />
+                <span className="relative inline-flex size-2 rounded-full bg-accent" />
+              </span>
+              Early access opening soon
+            </span>
+
+            <h1 className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-5xl">
+              Coaching software, <span className="text-gradient">built by coaches.</span>
+            </h1>
+            <p className="mx-auto mt-4 max-w-md text-base text-text-secondary sm:text-lg">
+              The all-in-one platform to program, track and grow your online fitness, nutrition and
+              wellbeing coaching. Join the waitlist for early access and a 14-day free trial.
+            </p>
+
+            <HeroForm />
+
+            <p className="mt-3 text-xs text-text-tertiary">
+              14-day free trial. No card required. Refer coaches and get 2 months free.
+            </p>
           </div>
         </div>
+
+        {/* scroll hint */}
+        <a
+          href="#why"
+          aria-label="Scroll"
+          className="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 text-text-tertiary"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </a>
       </section>
 
+      {/* value marquee strip */}
+      <div className="relative border-y border-border-subtle/60 bg-bg-surface/30 py-4">
+        <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+          <div className="marquee-track flex shrink-0 items-center gap-10 pr-10 text-sm font-medium uppercase tracking-widest text-text-tertiary">
+            {[...WORDS, ...WORDS].map((w, i) => (
+              <span key={i} className="flex items-center gap-10">
+                {w}
+                <span className="text-accent">/</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* ── Why Protocol ─────────────────────────────────────────────────── */}
-      <Section>
+      <Section id="why">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Why Protocol</Eyebrow>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
@@ -152,8 +197,37 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── Feature grid ─────────────────────────────────────────────────── */}
+      {/* ── Product showcase (parallax mockups) ──────────────────────────── */}
       <Section className="border-t border-border-subtle/60 bg-bg-surface/20">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <Eyebrow>The platform</Eyebrow>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+            Program on desktop. Athletes train on their phone.
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            Build a whole roster in the calendar, and your athletes get every session, target and cue
+            in an app they'll actually open.
+          </p>
+        </Reveal>
+
+        <Reveal className="relative mx-auto mt-16 max-w-4xl">
+          {/* soft glow behind the mockups */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.16),transparent_65%)] blur-2xl" />
+          <Parallax speed={0.08}>
+            <BrowserMock />
+          </Parallax>
+          <div className="mt-8 flex justify-center lg:mt-0 lg:block">
+            <div className="lg:absolute lg:-bottom-14 lg:-right-6">
+              <Parallax speed={0.28}>
+                <PhoneMock className="floaty-slow" />
+              </Parallax>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* ── Feature grid ─────────────────────────────────────────────────── */}
+      <Section>
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Everything in one platform</Eyebrow>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
@@ -164,8 +238,8 @@ export default function Home() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={(i % 3) * 70}>
-              <div className="h-full rounded-2xl border border-border-subtle bg-bg-surface p-6 card-elevation">
-                <span className="mb-4 flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent">
+              <div className="group h-full rounded-2xl border border-border-subtle bg-bg-surface p-6 transition-colors hover:border-accent/40 card-elevation">
+                <span className="mb-4 flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent transition-transform group-hover:scale-110">
                   <f.icon className="size-5" />
                 </span>
                 <h3 className="font-semibold text-text-primary">{f.title}</h3>
@@ -180,12 +254,12 @@ export default function Home() {
       <Section>
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-accent/25 bg-gradient-to-br from-accent-muted/60 to-bg-surface p-10 text-center card-elevation sm:p-14">
-            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_60%)]" />
-            <span className="floaty mx-auto flex size-14 items-center justify-center rounded-2xl bg-accent text-white">
+            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.2),transparent_60%)]" />
+            <span className="floaty mx-auto flex size-14 items-center justify-center rounded-2xl bg-accent text-white shadow-lg shadow-accent/30">
               <Icons.spark className="size-7" />
             </span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-              Refer coaches. Get <span className="text-accent">2 months free.</span>
+              Refer coaches. Get <span className="text-gradient">2 months free.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-text-secondary">
               Bring your network. For every coach who joins Protocol through your personal link, we
@@ -225,18 +299,21 @@ export default function Home() {
       </Section>
 
       {/* ── Waitlist form ────────────────────────────────────────────────── */}
-      <Section id="waitlist" className="scroll-mt-20">
-        <Reveal className="mx-auto mb-12 max-w-2xl text-center">
-          <Eyebrow>Join the waitlist</Eyebrow>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            Be first on Protocol.
-          </h2>
-          <p className="mt-4 text-text-secondary">
-            Reserve your spot and your 14-day free trial. A few quick questions and you're in.
-          </p>
-        </Reveal>
-        <WaitlistForm />
-      </Section>
+      <section id="waitlist" className="relative scroll-mt-20 overflow-hidden py-20 sm:py-28">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.14),transparent_60%)]" />
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="mx-auto mb-12 max-w-2xl text-center">
+            <Eyebrow>Join the waitlist</Eyebrow>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+              Be first on Protocol.
+            </h2>
+            <p className="mt-4 text-text-secondary">
+              Reserve your spot and your 14-day free trial. A few quick questions and you're in.
+            </p>
+          </Reveal>
+          <WaitlistForm />
+        </div>
+      </section>
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <Section className="border-t border-border-subtle/60">

@@ -69,6 +69,24 @@ export function WaitlistForm() {
     if (ref) setReferredBy(ref.slice(0, 24));
   }, []);
 
+  // Pre-fill the email captured in the hero (sessionStorage + custom event).
+  useEffect(() => {
+    const stored = (() => {
+      try {
+        return sessionStorage.getItem("waitlist_email");
+      } catch {
+        return null;
+      }
+    })();
+    if (stored) setAnswers((a) => ({ email: stored, ...a }));
+    const onPrefill = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail) setAnswers((a) => ({ ...a, email: detail }));
+    };
+    window.addEventListener("waitlist-prefill", onPrefill);
+    return () => window.removeEventListener("waitlist-prefill", onPrefill);
+  }, []);
+
   const wantsReferral = answers.wants_referral === REFERRAL_YES;
   const steps = useMemo(
     () => (wantsReferral ? [...BASE_FIELDS, ...REFERRAL_FIELDS] : BASE_FIELDS),
