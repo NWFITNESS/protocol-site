@@ -101,7 +101,9 @@ export function WaitlistForm() {
   // Focus the input when the step changes.
   useEffect(() => {
     if (field && (field.type === "text" || field.type === "email" || field.type === "textarea")) {
-      const t = setTimeout(() => inputRef.current?.focus(), 60);
+      // preventScroll so focusing the first field on mount can't drag the page
+      // down to the form section on load.
+      const t = setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 60);
       return () => clearTimeout(t);
     }
   }, [index, field]);

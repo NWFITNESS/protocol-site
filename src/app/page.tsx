@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
-import { Parallax } from "@/components/Parallax";
 import { HeroForm } from "@/components/HeroForm";
 import { HeroShader } from "@/components/HeroShader";
 import { WaitlistForm } from "@/components/WaitlistForm";
@@ -32,13 +31,6 @@ const Icons = {
 
 /* ── Content ───────────────────────────────────────────────────────────────── */
 const WORDS = ["Programming", "Nutrition", "Check-ins", "Metrics & PRs", "Messaging", "Payments", "All-access packages", "Workout timer"];
-
-const CHIPS = [
-  { icon: Icons.trophy, title: "New PR logged", sub: "Back squat · 140 kg", pos: "left-[3%] top-[24%]", speed: 0.32 },
-  { icon: Icons.utensils, title: "Macros on target", sub: "212p · 240c · 68f", pos: "right-[3%] top-[30%]", speed: 0.22 },
-  { icon: Icons.clipboard, title: "Check-in submitted", sub: "Weekly form · Ellie", pos: "left-[7%] bottom-[16%]", speed: 0.26 },
-  { icon: Icons.store, title: "New sale", sub: "All-access · £52.50", pos: "right-[6%] bottom-[20%]", speed: 0.36 },
-];
 
 const VALUES = [
   { icon: Icons.users, title: "Built by coaches, not developers", body: "Every feature comes from real coaching, not a product roadmap. If it doesn't help you coach, it isn't here." },
@@ -90,23 +82,6 @@ export default function Home() {
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,10,11,0.35),transparent_45%,rgba(10,10,11,0.55)_78%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-bg-base" />
 
-        {/* floating product chips (desktop only) */}
-        {CHIPS.map((c) => (
-          <div key={c.title} className={`pointer-events-none absolute z-0 hidden xl:block ${c.pos}`}>
-            <Parallax speed={c.speed}>
-              <div className="floaty glass flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 card-elevation">
-                <span className="flex size-8 items-center justify-center rounded-lg bg-accent-muted text-accent">
-                  <c.icon className="size-4" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[13px] font-semibold text-text-primary">{c.title}</p>
-                  <p className="nums text-[11px] text-text-tertiary">{c.sub}</p>
-                </div>
-              </div>
-            </Parallax>
-          </div>
-        ))}
-
         {/* hero card */}
         <div className="relative z-10 mx-auto w-full max-w-xl px-5">
           <div className="glass rise rounded-3xl p-8 text-center card-elevation sm:p-10">
@@ -118,19 +93,29 @@ export default function Home() {
               Early access opening soon
             </span>
 
-            <DecryptText
-              as="h1"
-              text="Coaching software, built by coaches."
-              variant="display"
-              trigger="mount"
-              loop={false}
-              retriggerOnHover={false}
-              stagger={40}
-              speed={36}
-              startDelay={250}
-              seed={7}
-              className="mt-5 text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
-            />
+            {/* Invisible copy reserves the exact box so the scramble (which has
+                different glyph widths) can't reflow and bounce the layout. */}
+            <div className="relative mt-5">
+              <span
+                aria-hidden
+                className="invisible block text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
+              >
+                Coaching software, built by coaches.
+              </span>
+              <DecryptText
+                as="h1"
+                text="Coaching software, built by coaches."
+                variant="display"
+                trigger="mount"
+                loop={false}
+                retriggerOnHover={false}
+                stagger={40}
+                speed={36}
+                startDelay={250}
+                seed={7}
+                className="absolute inset-0 text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
+              />
+            </div>
             <p className="mx-auto mt-4 max-w-md text-base text-text-secondary sm:text-lg">
               The all-in-one platform to program, track and grow your online fitness, nutrition and
               wellbeing coaching. Join the waitlist for early access and a 14-day free trial.
