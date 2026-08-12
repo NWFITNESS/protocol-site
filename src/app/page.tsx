@@ -4,8 +4,6 @@ import { Reveal } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
 import { HeroForm } from "@/components/HeroForm";
 import { WaitlistForm } from "@/components/WaitlistForm";
-import { PhoneMock } from "@/components/mock/PhoneMock";
-import { BrowserMock } from "@/components/mock/BrowserMock";
 
 /* ── Inline line icons (no icon dependency on this branch) ─────────────────── */
 type IconProps = { className?: string };
@@ -32,13 +30,6 @@ const Icons = {
 
 /* ── Content ───────────────────────────────────────────────────────────────── */
 const WORDS = ["Programming", "Nutrition", "Check-ins", "Metrics & PRs", "Messaging", "Payments", "All-access packages", "Workout timer"];
-
-const PHOTOS = [
-  { src: "/photos/a1.webp", caption: "Made to compete" },
-  { src: "/photos/a3.webp", caption: "Every rep tracked" },
-  { src: "/photos/a4.webp", caption: "Progress they can see" },
-  { src: "/photos/a2.webp", caption: "Built together" },
-];
 
 const CHIPS = [
   { icon: Icons.trophy, title: "New PR logged", sub: "Back squat · 140 kg", pos: "left-[3%] top-[24%]", speed: 0.32 },
@@ -89,19 +80,21 @@ export default function Home() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden py-20">
-        {/* athlete photo backdrop */}
-        <img
-          src="/photos/hero.webp"
-          alt="Athlete training in the gym"
-          fetchPriority="high"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        {/* brand + legibility overlays */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-bg-base/85 via-bg-base/45 to-bg-base" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_38%,rgba(59,130,246,0.22),transparent_62%)]" />
-          <div className="aurora absolute left-1/2 top-[38%] h-[380px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-[130px]" />
+        {/* animated orb, parallaxed, behind everything */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+          <Parallax speed={0.16} className="flex items-center justify-center">
+            <div className="orb">
+              <div className="orb-glow" />
+              <div className="orb-ring" style={{ animationDelay: "0s" }} />
+              <div className="orb-ring" style={{ animationDelay: "1.4s" }} />
+              <div className="orb-ring" style={{ animationDelay: "2.8s" }} />
+              <div className="orb-spin" />
+              <div className="orb-core" />
+            </div>
+          </Parallax>
         </div>
+        {/* vignette to keep the card legible over the orb */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_28%,#0a0a0b_76%)]" />
 
         {/* floating product chips (desktop only) */}
         {CHIPS.map((c) => (
@@ -202,69 +195,8 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── Product showcase (parallax mockups) ──────────────────────────── */}
-      <Section className="border-t border-border-subtle/60 bg-bg-surface/20">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <Eyebrow>The platform</Eyebrow>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            Program on desktop. Athletes train on their phone.
-          </h2>
-          <p className="mt-4 text-text-secondary">
-            Build a whole roster in the calendar, and your athletes get every session, target and cue
-            in an app they'll actually open.
-          </p>
-        </Reveal>
-
-        <Reveal className="relative mx-auto mt-16 max-w-4xl">
-          {/* soft glow behind the mockups */}
-          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.16),transparent_65%)] blur-2xl" />
-          <Parallax speed={0.08}>
-            <BrowserMock />
-          </Parallax>
-          <div className="mt-8 flex justify-center lg:mt-0 lg:block">
-            <div className="lg:absolute lg:-bottom-14 lg:-right-6">
-              <Parallax speed={0.28}>
-                <PhoneMock className="floaty-slow" />
-              </Parallax>
-            </div>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ── Athletes band ───────────────────────────────────────────────── */}
-      <Section>
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <Eyebrow>For the athletes</Eyebrow>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            You coach the athlete. Protocol handles the rest.
-          </h2>
-          <p className="mt-4 text-text-secondary">
-            Every session, target and check-in in one app your athletes actually open, so they show
-            up, log the work, and keep coming back.
-          </p>
-        </Reveal>
-        <Reveal className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {PHOTOS.map((p) => (
-            <div
-              key={p.src}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-subtle"
-            >
-              <img
-                src={p.src}
-                alt="Athlete training"
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-base/85 via-transparent to-transparent" />
-              <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
-              <span className="absolute bottom-3 left-3 text-xs font-medium text-white/90">{p.caption}</span>
-            </div>
-          ))}
-        </Reveal>
-      </Section>
-
       {/* ── Feature grid ─────────────────────────────────────────────────── */}
-      <Section>
+      <Section className="border-t border-border-subtle/60 bg-bg-surface/20">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Everything in one platform</Eyebrow>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
