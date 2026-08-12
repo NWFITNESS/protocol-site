@@ -69,6 +69,20 @@ body {
   color: transparent;
 }
 
+/* Hero headline: reveal a cobalt→violet gradient as each character locks in,
+   while the scramble stays a solid muted colour so it's readable while boiling.
+   The gradient lives on the whole line (spans the wrap); locked/plain glyphs go
+   transparent to let it show, scramble glyphs paint their own colour on top. */
+.hero-decrypt {
+  background-image: linear-gradient(100deg, #8ab4ff, #3b82f6 46%, #a78bfa 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.hero-decrypt [data-mk-char][data-state="lock"],
+.hero-decrypt [data-mk-char][data-state="plain"] {
+  color: transparent !important;
+}
+
 .card-elevation {
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.5),

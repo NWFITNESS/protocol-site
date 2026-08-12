@@ -3,6 +3,7 @@ import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
 import { HeroForm } from "@/components/HeroForm";
 import { HeroShader } from "@/components/HeroShader";
+import { AthletePhone } from "@/components/AthletePhone";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { DecryptText } from "@/components/ui/decrypt-text";
 
@@ -48,6 +49,20 @@ const FEATURES = [
   { icon: Icons.store, title: "Payments & storefront", body: "Sell programs and packages, take card payments through Stripe, and get paid without leaving Protocol." },
 ];
 
+const APP_CHIPS = [
+  { icon: Icons.grid, label: "Today's session", pos: "left-[-9%] top-[10%]", speed: 0.3 },
+  { icon: Icons.clipboard, label: "Habits & check-ins", pos: "right-[-11%] top-[26%]", speed: 0.2 },
+  { icon: Icons.trophy, label: "PRs auto-tracked", pos: "left-[-13%] top-[50%]", speed: 0.26 },
+  { icon: Icons.utensils, label: "Nutrition targets", pos: "right-[-9%] top-[60%]", speed: 0.34 },
+  { icon: Icons.timer, label: "Built-in timer", pos: "left-[-7%] bottom-[7%]", speed: 0.22 },
+];
+
+const ATHLETE_BULLETS = [
+  "Every session, target and cue in their pocket",
+  "Log sets, auto-detect PRs, tick off daily habits",
+  "Your logo and colours, so it feels like your app",
+];
+
 const STEPS = [
   { n: "01", title: "Join the waitlist", body: "Takes about thirty seconds. Only your name and email are required." },
   { n: "02", title: "Get early access", body: "We invite coaches in waves. When your spot opens, your 14-day free trial is ready." },
@@ -63,7 +78,7 @@ const FAQ = [
 
 function Section({ children, className = "", id }: { children: ReactNode; className?: string; id?: string }) {
   return (
-    <section id={id} className={`py-20 sm:py-28 ${className}`}>
+    <section id={id} className={`py-16 sm:py-20 ${className}`}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">{children}</div>
     </section>
   );
@@ -73,7 +88,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[92vh] items-center overflow-hidden py-20">
+      <section className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden pt-16">
         {/* WebGL plasma backdrop (reduced-motion → static cobalt gradient) */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-20">
           <HeroShader className="h-full w-full" />
@@ -113,7 +128,7 @@ export default function Home() {
                 speed={36}
                 startDelay={250}
                 seed={7}
-                className="absolute inset-0 text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
+                className="hero-decrypt absolute inset-0 text-balance text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
               />
             </div>
             <p className="mx-auto mt-4 max-w-md text-base text-text-secondary sm:text-lg">
@@ -184,8 +199,56 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── Feature grid ─────────────────────────────────────────────────── */}
+      {/* ── Athlete app showcase (real screenshot + floating chips) ──────── */}
       <Section className="border-t border-border-subtle/60 bg-bg-surface/20">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <Eyebrow>The athlete app</Eyebrow>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+              An app your athletes actually open.
+            </h2>
+            <p className="mt-4 text-text-secondary">
+              Programming, nutrition, habits and check-ins in one clean app on their phone. They see
+              exactly what to do today, log it in a few taps, and watch their progress build.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {ATHLETE_BULLETS.map((b) => (
+                <li key={b} className="flex items-start gap-3 text-sm text-text-secondary">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent-muted text-accent">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={80} className="relative">
+            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.2),transparent_62%)] blur-2xl" />
+            <div className="relative mx-auto flex w-fit justify-center">
+              <AthletePhone />
+              {APP_CHIPS.map((c, i) => (
+                <div key={c.label} className={`absolute hidden lg:block ${c.pos}`}>
+                  <div
+                    className="floaty glass flex items-center gap-2 rounded-xl px-3 py-2 card-elevation"
+                    style={{ animationDelay: `${i * 0.6}s` }}
+                  >
+                    <span className="flex size-7 items-center justify-center rounded-lg bg-accent-muted text-accent">
+                      <c.icon className="size-4" />
+                    </span>
+                    <span className="whitespace-nowrap text-[13px] font-medium text-text-primary">{c.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ── Feature grid ─────────────────────────────────────────────────── */}
+      <Section>
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Everything in one platform</Eyebrow>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">

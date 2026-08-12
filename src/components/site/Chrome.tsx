@@ -6,7 +6,7 @@ import { Logo } from "@/components/brand";
  *  only the waitlist. */
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border-subtle/60 bg-bg-base/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 bg-gradient-to-b from-bg-base/80 via-bg-base/40 to-transparent">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:px-8">
         <Logo />
         <a
