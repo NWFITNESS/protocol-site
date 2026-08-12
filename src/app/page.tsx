@@ -3,7 +3,9 @@ import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
 import { HeroForm } from "@/components/HeroForm";
+import { HeroShader } from "@/components/HeroShader";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { DecryptText } from "@/components/ui/decrypt-text";
 
 /* ── Inline line icons (no icon dependency on this branch) ─────────────────── */
 type IconProps = { className?: string };
@@ -80,21 +82,13 @@ export default function Home() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden py-20">
-        {/* animated orb, parallaxed, behind everything */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <Parallax speed={0.16} className="flex items-center justify-center">
-            <div className="orb">
-              <div className="orb-glow" />
-              <div className="orb-ring" style={{ animationDelay: "0s" }} />
-              <div className="orb-ring" style={{ animationDelay: "1.4s" }} />
-              <div className="orb-ring" style={{ animationDelay: "2.8s" }} />
-              <div className="orb-spin" />
-              <div className="orb-core" />
-            </div>
-          </Parallax>
+        {/* WebGL plasma backdrop (reduced-motion → static cobalt gradient) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-20">
+          <HeroShader className="h-full w-full" />
         </div>
-        {/* vignette to keep the card legible over the orb */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_28%,#0a0a0b_76%)]" />
+        {/* legibility overlays: soft centre clearing + fade into the page */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,10,11,0.35),transparent_45%,rgba(10,10,11,0.55)_78%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-bg-base" />
 
         {/* floating product chips (desktop only) */}
         {CHIPS.map((c) => (
@@ -124,9 +118,19 @@ export default function Home() {
               Early access opening soon
             </span>
 
-            <h1 className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-5xl">
-              Coaching software, <span className="text-gradient">built by coaches.</span>
-            </h1>
+            <DecryptText
+              as="h1"
+              text="Coaching software, built by coaches."
+              variant="display"
+              trigger="mount"
+              loop={false}
+              retriggerOnHover
+              stagger={40}
+              speed={36}
+              startDelay={250}
+              seed={7}
+              className="mt-5 text-center text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
+            />
             <p className="mx-auto mt-4 max-w-md text-base text-text-secondary sm:text-lg">
               The all-in-one platform to program, track and grow your online fitness, nutrition and
               wellbeing coaching. Join the waitlist for early access and a 14-day free trial.

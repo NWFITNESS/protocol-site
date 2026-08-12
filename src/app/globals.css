@@ -23,6 +23,22 @@
   --font-display: var(--font-orbitron);
 }
 
+/* Motiq (DecryptText) tokens tuned to Protocol's dark theme. Unlayered :root
+   beats the component's @layer motiq defaults, which otherwise render as light
+   mode (dark text) since the site sets no .dark class. */
+:root {
+  --motiq-fg: #f5f5f7;
+  --motiq-fg-secondary: #a8a8b0;
+  --motiq-muted: #6b7688;
+  --motiq-accent: #3b82f6;
+  --motiq-accent-text: #6ea8ff;
+  --motiq-secondary-accent: #22c7d9;
+  --motiq-success: #32d583;
+  --motiq-surface: #111827;
+  --motiq-border: #263449;
+  --motiq-shadow-md: 0 8px 24px -6px rgba(0, 3, 10, 0.62);
+}
+
 html {
   scroll-behavior: smooth;
 }
