@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
+// Self-hosted fonts (via @fontsource) instead of next/font/google, so Vercel's
+// Turbopack build never has to resolve Google Fonts at build time — which it
+// intermittently fails to do. The CSS variables are defined in globals.css.
+import "@fontsource-variable/inter";
+import "@fontsource-variable/orbitron";
 import "./globals.css";
 import { Header, Footer } from "@/components/site/Chrome";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-orbitron",
-  weight: ["500", "600", "700", "800"],
-});
 
 const TITLE = "Protocol — Coaching software, built by coaches";
 const DESCRIPTION =
@@ -47,10 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${orbitron.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body
         className="flex min-h-full flex-col bg-bg-base text-text-primary"
         style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}

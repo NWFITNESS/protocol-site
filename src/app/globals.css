@@ -27,6 +27,10 @@
    beats the component's @layer motiq defaults, which otherwise render as light
    mode (dark text) since the site sets no .dark class. */
 :root {
+  /* Font-family variables (self-hosted via @fontsource, imported in layout). */
+  --font-inter: "Inter Variable", system-ui, sans-serif;
+  --font-orbitron: "Orbitron Variable", var(--font-inter);
+
   --motiq-fg: #f5f5f7;
   --motiq-fg-secondary: #a8a8b0;
   --motiq-muted: #6b7688;
