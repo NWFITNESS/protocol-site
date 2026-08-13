@@ -83,6 +83,41 @@ function Section({ children, className = "", id }: { children: ReactNode; classN
   );
 }
 
+/** A representative in-app interval-timer face for the timer feature card (no
+ *  real capture yet). Pure markup so it uses the site fonts and stays crisp. */
+function TimerFace() {
+  const r = 44;
+  const c = 2 * Math.PI * r;
+  const progress = 0.66;
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_38%,#141b26,#0a0b0f)]">
+      <span className="absolute left-4 top-3 rounded-md bg-accent-muted px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">
+        EMOM · 12
+      </span>
+      <div className="relative flex items-center justify-center">
+        <svg width="104" height="104" viewBox="0 0 104 104" className="-rotate-90">
+          <circle cx="52" cy="52" r={r} fill="none" stroke="#2a2e38" strokeWidth="7" />
+          <circle cx="52" cy="52" r={r} fill="none" stroke="#3b82f6" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - progress)} />
+        </svg>
+        <div className="absolute flex flex-col items-center">
+          <span className="font-mono text-[22px] font-bold leading-none text-text-primary">00:47</span>
+          <span className="mt-1 text-[9px] text-text-tertiary">Round 3 / 12</span>
+        </div>
+      </div>
+      <div className="absolute bottom-3 flex items-center gap-3">
+        <span className="size-5 rounded-full border border-border-strong" />
+        <span className="flex size-6 items-center justify-center rounded-full bg-accent text-white">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor">
+            <rect x="7" y="5" width="3.5" height="14" rx="1" />
+            <rect x="13.5" y="5" width="3.5" height="14" rx="1" />
+          </svg>
+        </span>
+        <span className="size-5 rounded-full border border-border-strong" />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -269,9 +304,7 @@ export default function Home() {
                       className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-out group-hover:scale-105"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,rgba(59,130,246,0.28),rgba(124,58,237,0.16))]">
-                      <f.icon className="size-16 text-accent/80" />
-                    </div>
+                    <TimerFace />
                   )}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-surface via-bg-surface/10 to-transparent" />
                 </div>
