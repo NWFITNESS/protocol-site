@@ -41,12 +41,12 @@ const VALUES = [
 ];
 
 const FEATURES = [
-  { icon: Icons.grid, title: "Percentage-based programming", body: "Build sessions in a calendar, drag between days, and let loads auto-calculate from each athlete's maxes." },
-  { icon: Icons.clipboard, title: "Bespoke forms & check-ins", body: "Design your own check-in forms, drop them into the schedule, and reply in a two-way thread." },
-  { icon: Icons.utensils, title: "Fully integrated nutrition", body: "Set calorie and macro targets with the built-in calculator, build recipes and meal plans, alongside training." },
-  { icon: Icons.timer, title: "Built-in workout timer", body: "For Time, AMRAP, EMOM, Tabata and intervals with beeps and voice cues. No second app on the gym floor." },
-  { icon: Icons.trophy, title: "Progress & PRs", body: "Track every metric, auto-detect personal records from logged sessions, and celebrate them with your athletes." },
-  { icon: Icons.store, title: "Payments & storefront", body: "Sell programs and packages, take card payments through Stripe, and get paid without leaving Protocol." },
+  { icon: Icons.grid, img: "calendar-builder", title: "Percentage-based programming", body: "Build sessions in a calendar, drag between days, and let loads auto-calculate from each athlete's maxes." },
+  { icon: Icons.clipboard, img: "messaging", title: "Bespoke forms & check-ins", body: "Design your own check-in forms, drop them into the schedule, and reply in a two-way thread." },
+  { icon: Icons.utensils, img: "nutrition-targets", title: "Fully integrated nutrition", body: "Set calorie and macro targets with the built-in calculator, build recipes and meal plans, alongside training." },
+  { icon: Icons.timer, img: null, title: "Built-in workout timer", body: "For Time, AMRAP, EMOM, Tabata and intervals with beeps and voice cues. No second app on the gym floor." },
+  { icon: Icons.trophy, img: "metrics", title: "Progress & PRs", body: "Track every metric, auto-detect personal records from logged sessions, and celebrate them with your athletes." },
+  { icon: Icons.store, img: "storefront", title: "Payments & storefront", body: "Sell programs and packages, take card payments through Stripe, and get paid without leaving Protocol." },
 ];
 
 const APP_CHIPS = [
@@ -257,12 +257,31 @@ export default function Home() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={(i % 3) * 70}>
-              <div className="group h-full rounded-2xl border border-border-subtle bg-bg-surface p-6 transition-colors hover:border-accent/40 card-elevation">
-                <span className="mb-4 flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent transition-transform group-hover:scale-110">
-                  <f.icon className="size-5" />
-                </span>
-                <h3 className="font-semibold text-text-primary">{f.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">{f.body}</p>
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-subtle bg-bg-surface transition-colors hover:border-accent/40 card-elevation">
+                {/* screenshot header (real app captures); timer has no shot yet
+                    so it falls back to a branded gradient tile. */}
+                <div className="relative h-36 overflow-hidden bg-bg-base sm:h-40">
+                  {f.img ? (
+                    <img
+                      src={`/screens/${f.img}.webp`}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,rgba(59,130,246,0.28),rgba(124,58,237,0.16))]">
+                      <f.icon className="size-16 text-accent/80" />
+                    </div>
+                  )}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-surface via-bg-surface/10 to-transparent" />
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <span className="-mt-11 mb-3 flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent ring-4 ring-bg-surface">
+                    <f.icon className="size-5" />
+                  </span>
+                  <h3 className="font-semibold text-text-primary">{f.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">{f.body}</p>
+                </div>
               </div>
             </Reveal>
           ))}
