@@ -266,9 +266,6 @@ export default function Home() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-surface via-bg-surface/10 to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <span className="-mt-11 mb-3 flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent ring-4 ring-bg-surface">
-                    <f.icon className="size-5" />
-                  </span>
                   <h3 className="font-semibold text-text-primary">{f.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">{f.body}</p>
                 </div>

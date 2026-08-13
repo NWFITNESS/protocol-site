@@ -9,6 +9,7 @@ function Frame({ children }: { children: ReactNode }) {
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_36%,#141b26,#0a0b0f)] px-4">
       {children}
+      <div className="tile-sheen pointer-events-none absolute inset-0" />
     </div>
   );
 }
@@ -101,13 +102,13 @@ function Nutrition() {
           </div>
         </div>
         <div className="w-[120px] space-y-2">
-          {macros.map(([label, col, pct]) => (
+          {macros.map(([label, col, pct], i) => (
             <div key={label}>
               <div className="mb-0.5 flex justify-between text-[9px] text-text-tertiary">
                 <span>{label}</span>
               </div>
               <div className="h-1.5 overflow-hidden rounded-full bg-bg-surface-raised">
-                <div className="h-full rounded-full" style={{ width: `${pct * 100}%`, background: col }} />
+                <div className="bar-pulse h-full rounded-full" style={{ width: `${pct * 100}%`, background: col, animationDelay: `${i * 0.4}s` }} />
               </div>
             </div>
           ))}
@@ -129,7 +130,7 @@ function Timer() {
       <div className="relative flex items-center justify-center">
         <svg width="104" height="104" viewBox="0 0 104 104" className="-rotate-90">
           <circle cx="52" cy="52" r={r} fill="none" stroke="#2a2e38" strokeWidth="7" />
-          <circle cx="52" cy="52" r={r} fill="none" stroke="#3b82f6" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * 0.34} />
+          <circle className="ring-spin" cx="52" cy="52" r={r} fill="none" stroke="#3b82f6" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * 0.34} />
         </svg>
         <div className="absolute flex flex-col items-center">
           <span className="font-mono text-[22px] font-bold leading-none text-text-primary">00:47</span>
@@ -173,7 +174,7 @@ function Prs() {
                 <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <path d="M4 48 L44 42 L84 44 L124 32 L164 30 L204 16 L236 8" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path className="draw-trend" d="M4 48 L44 42 L84 44 L124 32 L164 30 L204 16 L236 8" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M4 48 L44 42 L84 44 L124 32 L164 30 L204 16 L236 8 L236 60 L4 60 Z" fill="url(#prg)" />
             <circle cx="236" cy="8" r="3.5" fill="#3b82f6" />
           </svg>
