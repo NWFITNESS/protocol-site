@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { HeroForm } from "@/components/HeroForm";
 import { HeroShader } from "@/components/HeroShader";
 import { AthletePhone } from "@/components/AthletePhone";
+import { FeatureArt } from "@/components/FeatureArt";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { DecryptText } from "@/components/ui/decrypt-text";
 
@@ -41,12 +42,12 @@ const VALUES = [
 ];
 
 const FEATURES = [
-  { icon: Icons.grid, img: "calendar-builder", title: "Percentage-based programming", body: "Build sessions in a calendar, drag between days, and let loads auto-calculate from each athlete's maxes." },
-  { icon: Icons.clipboard, img: "messaging", title: "Bespoke forms & check-ins", body: "Design your own check-in forms, drop them into the schedule, and reply in a two-way thread." },
-  { icon: Icons.utensils, img: "nutrition-targets", title: "Fully integrated nutrition", body: "Set calorie and macro targets with the built-in calculator, build recipes and meal plans, alongside training." },
-  { icon: Icons.timer, img: null, title: "Built-in workout timer", body: "For Time, AMRAP, EMOM, Tabata and intervals with beeps and voice cues. No second app on the gym floor." },
-  { icon: Icons.trophy, img: "metrics", title: "Progress & PRs", body: "Track every metric, auto-detect personal records from logged sessions, and celebrate them with your athletes." },
-  { icon: Icons.store, img: "storefront", title: "Payments & storefront", body: "Sell programs and packages, take card payments through Stripe, and get paid without leaving Protocol." },
+  { icon: Icons.grid, art: "programming", title: "Percentage-based programming", body: "Build sessions in a calendar, drag between days, and let loads auto-calculate from each athlete's maxes." },
+  { icon: Icons.clipboard, art: "forms", title: "Bespoke forms & check-ins", body: "Design your own check-in forms, drop them into the schedule, and reply in a two-way thread." },
+  { icon: Icons.utensils, art: "nutrition", title: "Fully integrated nutrition", body: "Set calorie and macro targets with the built-in calculator, build recipes and meal plans, alongside training." },
+  { icon: Icons.timer, art: "timer", title: "Built-in workout timer", body: "For Time, AMRAP, EMOM, Tabata and intervals with beeps and voice cues. No second app on the gym floor." },
+  { icon: Icons.trophy, art: "prs", title: "Progress & PRs", body: "Track every metric, auto-detect personal records from logged sessions, and celebrate them with your athletes." },
+  { icon: Icons.store, art: "storefront", title: "Payments & storefront", body: "Sell programs and packages, take card payments through Stripe, and get paid without leaving Protocol." },
 ];
 
 const APP_CHIPS = [
@@ -80,41 +81,6 @@ function Section({ children, className = "", id }: { children: ReactNode; classN
     <section id={id} className={`py-16 sm:py-20 ${className}`}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">{children}</div>
     </section>
-  );
-}
-
-/** A representative in-app interval-timer face for the timer feature card (no
- *  real capture yet). Pure markup so it uses the site fonts and stays crisp. */
-function TimerFace() {
-  const r = 44;
-  const c = 2 * Math.PI * r;
-  const progress = 0.66;
-  return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_38%,#141b26,#0a0b0f)]">
-      <span className="absolute left-4 top-3 rounded-md bg-accent-muted px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">
-        EMOM · 12
-      </span>
-      <div className="relative flex items-center justify-center">
-        <svg width="104" height="104" viewBox="0 0 104 104" className="-rotate-90">
-          <circle cx="52" cy="52" r={r} fill="none" stroke="#2a2e38" strokeWidth="7" />
-          <circle cx="52" cy="52" r={r} fill="none" stroke="#3b82f6" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - progress)} />
-        </svg>
-        <div className="absolute flex flex-col items-center">
-          <span className="font-mono text-[22px] font-bold leading-none text-text-primary">00:47</span>
-          <span className="mt-1 text-[9px] text-text-tertiary">Round 3 / 12</span>
-        </div>
-      </div>
-      <div className="absolute bottom-3 flex items-center gap-3">
-        <span className="size-5 rounded-full border border-border-strong" />
-        <span className="flex size-6 items-center justify-center rounded-full bg-accent text-white">
-          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor">
-            <rect x="7" y="5" width="3.5" height="14" rx="1" />
-            <rect x="13.5" y="5" width="3.5" height="14" rx="1" />
-          </svg>
-        </span>
-        <span className="size-5 rounded-full border border-border-strong" />
-      </div>
-    </div>
   );
 }
 
@@ -295,17 +261,8 @@ export default function Home() {
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-subtle bg-bg-surface transition-colors hover:border-accent/40 card-elevation">
                 {/* screenshot header (real app captures); timer has no shot yet
                     so it falls back to a branded gradient tile. */}
-                <div className="relative h-36 overflow-hidden bg-bg-base sm:h-40">
-                  {f.img ? (
-                    <img
-                      src={`/screens/${f.img}.webp`}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <TimerFace />
-                  )}
+                <div className="relative h-36 overflow-hidden bg-bg-base transition-transform duration-500 group-hover:scale-[1.02] sm:h-40">
+                  <FeatureArt name={f.art} />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-surface via-bg-surface/10 to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
