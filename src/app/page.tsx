@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Mark } from "@/app/Mark";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
 import { HeroForm } from "@/components/HeroForm";
@@ -111,20 +110,19 @@ export default function Home() {
             {/* Brand moment: the Protocol wordmark decrypts in. One word, so it
                 can't reflow/overlap like a wrapping sentence; the cobalt→violet
                 gradient reveals as each letter locks. */}
-            <div className="mt-7 flex items-center justify-center gap-3 sm:gap-4">
-              <Mark size={48} className="hidden sm:block" />
+            <div className="mt-7 flex items-center justify-center">
               <DecryptText
                 as="span"
                 text="PROTOCOL"
                 variant="display"
                 trigger="mount"
-                loop={false}
+                loop={6000}
                 retriggerOnHover={false}
                 stagger={72}
                 speed={34}
                 startDelay={200}
                 seed={7}
-                className="hero-decrypt inline-block font-display text-[2.6rem] font-bold leading-none tracking-[0.04em] sm:text-6xl"
+                className="hero-decrypt inline-block font-display text-[2.7rem] font-bold leading-none tracking-[0.04em] sm:text-6xl"
               />
             </div>
 
