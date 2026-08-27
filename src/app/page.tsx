@@ -19,22 +19,31 @@ import { formatTierPrice } from "@/lib/pricing";
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Hero - full-bleed photo background with the copy overlaid */}
+      <section className="relative flex min-h-[90vh] items-center overflow-hidden">
+        {/* Full-bleed background image (portrait on mobile, laptop duo from sm up) */}
+        <picture>
+          <source media="(min-width: 640px)" srcSet="/screens/laptop-phone.png" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/screens/coach-programming-phone.png"
+            alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+        </picture>
+        {/* Legibility scrim, fading fully into the page at the bottom */}
+        <div className="absolute inset-0 -z-10 bg-bg-base/45" aria-hidden />
         <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% -10%, rgba(59,130,246,0.16), transparent 70%)",
-          }}
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-bg-base/70 via-bg-base/25 to-bg-base"
           aria-hidden
         />
-        <Container className="relative pt-16 sm:pt-24">
-          <div className="mx-auto max-w-3xl text-center">
+
+        <Container className="relative">
+          <div className="mx-auto max-w-3xl py-24 text-center sm:py-28">
             <div className="flex justify-center">
               <Eyebrow>Built by a coach, for coaches</Eyebrow>
             </div>
-            <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary drop-shadow-sm sm:text-6xl lg:text-7xl">
               The operating system for <span className="text-accent">serious coaches</span>.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
@@ -54,23 +63,6 @@ export default function Home() {
             <p className="mt-4 text-sm text-text-tertiary">{SITE.trialMicrocopy}</p>
           </div>
         </Container>
-
-        {/* Full-bleed hero image: edge-to-edge, melting off the bottom into the page */}
-        <div className="relative mt-12 sm:mt-16">
-          <div className="mx-auto max-h-[58vh] max-w-6xl overflow-hidden sm:max-h-[560px]">
-            <picture>
-              <source media="(min-width: 640px)" srcSet="/screens/laptop-phone.png" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/screens/coach-programming-phone.png"
-                alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
-                className="block h-auto w-full"
-              />
-            </picture>
-          </div>
-          {/* Fade the bottom edge into the page background */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg-base to-transparent" />
-        </div>
       </section>
 
       {/* Trust stat band */}
