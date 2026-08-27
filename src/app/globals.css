@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Protocol brand tokens — mirrored from the app so the site and product feel
+/* Protocol brand tokens - mirrored from the app so the site and product feel
    identical. Defined in @theme so Tailwind v4 emits both utility classes
    (bg-bg-base, text-accent, border-border-subtle, font-display…) AND the
    underlying :root custom properties (var(--color-accent)) that Mark.tsx uses. */
@@ -40,7 +40,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Tabular figures for numerics (prices, stats) — matches the app. */
+/* Tabular figures for numerics (prices, stats) - matches the app. */
 .nums {
   font-variant-numeric: tabular-nums;
 }

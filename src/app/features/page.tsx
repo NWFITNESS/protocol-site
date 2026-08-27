@@ -11,7 +11,7 @@ import { FEATURE_CATEGORIES } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Everything Protocol does — section-based programming, percentage loading, metrics and PRs, nutrition, messaging, a storefront and teams. All in one app.",
+    "Everything Protocol does - section-based programming, percentage loading, metrics and PRs, nutrition, messaging, a storefront and teams. All in one app.",
 };
 
 export default function FeaturesPage() {
@@ -34,7 +34,7 @@ export default function FeaturesPage() {
             The most complete toolkit for serious coaching.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-text-secondary">
-            Programming, tracking, nutrition, communication and payments —
+            Programming, tracking, nutrition, communication and payments -
             engineered to work as one system, not a pile of add-ons.
           </p>
         </Container>

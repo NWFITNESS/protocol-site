@@ -15,8 +15,8 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   metadataBase: new URL("https://protocolapp.uk"),
   title: {
-    default: "Protocol — The coaching protocol",
-    template: "%s — Protocol",
+    default: "Protocol - The coaching protocol",
+    template: "%s - Protocol",
   },
   description:
     "The operating system for serious coaches. Percentage-based programming, athlete tracking, nutrition, messaging and payments in one precise app. Built by a coach, for coaches.",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Protocol — The coaching protocol",
+    title: "Protocol - The coaching protocol",
     description:
       "The operating system for serious coaches. Built by a coach, for coaches.",
     url: "https://protocolapp.uk",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Protocol — The coaching protocol",
+    title: "Protocol - The coaching protocol",
     description:
       "The operating system for serious coaches. Built by a coach, for coaches.",
   },

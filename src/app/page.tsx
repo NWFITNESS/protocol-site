@@ -38,7 +38,7 @@ export default function Home() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
               Protocol turns percentage-based programming, athlete tracking and
-              your whole coaching business into one precise system — so you can
+              your whole coaching business into one precise system - so you can
               program faster and coach better.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -56,7 +56,7 @@ export default function Home() {
           <div className="mx-auto mt-14 max-w-4xl">
             <Screenshot
               src="/screens/calendar-builder.png"
-              alt="The Protocol coach calendar builder — colour-coded sessions across the week"
+              alt="The Protocol coach calendar builder - colour-coded sessions across the week"
             />
           </div>
         </Container>
@@ -103,7 +103,7 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Spotlights — alternating text/screenshot */}
+      {/* Spotlights - alternating text/screenshot */}
       <div className="border-t border-border-subtle">
         {SPOTLIGHTS.map((s, i) => (
           <Section key={s.title} className={i % 2 === 1 ? "bg-bg-surface/30" : ""}>
@@ -138,7 +138,7 @@ export default function Home() {
             <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
               Percentages are broken in most coaching tools. Protocol treats sets ×
               reps × % of 1RM as a first-class concept and stores every athlete&apos;s
-              maxes natively — so working weights are always right, and updating a max
+              maxes natively - so working weights are always right, and updating a max
               updates the whole program. It&apos;s the difference between software built
               for coaches and software a coach built.
             </p>

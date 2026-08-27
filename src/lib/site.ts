@@ -40,12 +40,12 @@ export const HOME_FEATURES: FeatureCard[] = [
   {
     icon: "gauge",
     title: "Percentage-based programming that just works",
-    body: "Write 5×3 @ 80% once. Every athlete sees their exact working weight, auto-calculated from their own maxes — no spreadsheets, no maths.",
+    body: "Write 5×3 @ 80% once. Every athlete sees their exact working weight, auto-calculated from their own maxes - no spreadsheets, no maths.",
   },
   {
     icon: "dumbbell",
     title: "Section-based session builder",
-    body: "Program the way you actually write — warm-up, strength, accessory, conditioning — with supersets, tempo, rest and a drag-and-drop calendar.",
+    body: "Program the way you actually write - warm-up, strength, accessory, conditioning - with supersets, tempo, rest and a drag-and-drop calendar.",
   },
   {
     icon: "trophy",
@@ -55,7 +55,7 @@ export const HOME_FEATURES: FeatureCard[] = [
   {
     icon: "utensils",
     title: "Nutrition, built in",
-    body: "Macro targets, a UK food database, recipes and a weekly meal planner — no second app for you or your athletes.",
+    body: "Macro targets, a UK food database, recipes and a weekly meal planner - no second app for you or your athletes.",
   },
   {
     icon: "message",
@@ -65,7 +65,7 @@ export const HOME_FEATURES: FeatureCard[] = [
   {
     icon: "store",
     title: "Sell your coaching",
-    body: "A branded storefront with Stripe payments — subscriptions, one-offs and fixed programs, on your own account.",
+    body: "A branded storefront with Stripe payments - subscriptions, one-offs and fixed programs, on your own account.",
   },
 ];
 
@@ -82,7 +82,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   {
     eyebrow: "Auto-calculated loads",
     title: "Percentages, finally done right",
-    body: "Most tools treat percentages as an afterthought. Protocol makes sets × reps × % of 1RM a first-class concept and stores every athlete's maxes natively — so 5×3 @ 80% resolves to their real working weight the moment they open the session.",
+    body: "Most tools treat percentages as an afterthought. Protocol makes sets × reps × % of 1RM a first-class concept and stores every athlete's maxes natively - so 5×3 @ 80% resolves to their real working weight the moment they open the session.",
     image: "/screens/session-percentages.png",
     imageAlt: "A Protocol session showing 5×3 @ 80% auto-calculated to an athlete's working weight",
   },
@@ -103,7 +103,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   {
     eyebrow: "The athlete app",
     title: "An app athletes actually open",
-    body: "A fast, phone-first experience: today's session with working weights, one-tap logging, a built-in gym timer, streaks, nutrition and health — installable to the home screen.",
+    body: "A fast, phone-first experience: today's session with working weights, one-tap logging, a built-in gym timer, streaks, nutrition and health - installable to the home screen.",
     image: "/screens/athlete-home.jpg",
     imageAlt: "The Protocol athlete home screen on a phone",
   },
@@ -129,7 +129,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   { slug: "metrics", icon: "trophy", title: "Metrics & PRs", summary: "Maxes, rep-maxes, benchmarks and bodyweight with auto PR detection and history graphs." },
   { slug: "nutrition", icon: "utensils", title: "Nutrition", summary: "Macro targets, a food database, recipes, a meal planner and body-composition tracking." },
   { slug: "messaging", icon: "message", title: "Messaging & check-ins", summary: "Realtime coach-to-athlete chat, forms and check-ins with push notifications." },
-  { slug: "storefront", icon: "store", title: "Storefront & payments", summary: "A branded storefront with Stripe payments — subscriptions, one-offs and fixed programs." },
+  { slug: "storefront", icon: "store", title: "Storefront & payments", summary: "A branded storefront with Stripe payments - subscriptions, one-offs and fixed programs." },
   { slug: "teams", icon: "users", title: "Teams", summary: "Add assistant coaches with roles and roster access, and grow beyond a one-person operation." },
 ];
 
@@ -154,9 +154,9 @@ export const FEATURE_PAGES: FeaturePage[] = [
     slug: "programming",
     title: "Programming",
     subtitle: "Build serious training, the way you actually write it.",
-    intro: "Protocol's session model matches how coaches think — labelled sections, real prescriptions, and loads that calculate themselves.",
+    intro: "Protocol's session model matches how coaches think - labelled sections, real prescriptions, and loads that calculate themselves.",
     sections: [
-      { title: "Section-based sessions", tagline: "Warm-up, strength, accessory, conditioning.", body: "Every session is built from labelled sections with their own format, intent and RX+ flag — so a program reads the way you'd write it on paper.", image: "/screens/session-editor.png" },
+      { title: "Section-based sessions", tagline: "Warm-up, strength, accessory, conditioning.", body: "Every session is built from labelled sections with their own format, intent and RX+ flag - so a program reads the way you'd write it on paper.", image: "/screens/session-editor.png" },
       { title: "Percentage loading", tagline: "5×3 @ 80% → their working weight.", body: "Prescribe as a percentage of any max and Protocol resolves the exact load per athlete from their stored maxes. Change a max, the whole program updates.", image: "/screens/session-percentages.png" },
       { title: "The calendar builder", tagline: "Drag, select, copy, paste.", body: "Program on a colour-coded calendar. Copy a day or a whole week across athletes, drag sessions to move them, and drop in rest days, habits and benchmarks.", image: "/screens/calendar-builder.png" },
       { title: "Benchmarks & a global library", tagline: "The Girls, Heroes and 600+ movements.", body: "Import benchmark workouts as locked sessions, and pull from a global library of 622 movements with attributed demo videos.", image: "/screens/library.png" },
@@ -166,18 +166,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
     slug: "metrics",
     title: "Metrics & PRs",
     subtitle: "Every number that matters, in one place per athlete.",
-    intro: "Maxes, rep-maxes, benchmark results and bodyweight — tracked, graphed and celebrated automatically.",
+    intro: "Maxes, rep-maxes, benchmark results and bodyweight - tracked, graphed and celebrated automatically.",
     sections: [
       { title: "Auto PR detection", tagline: "New maxes, spotted for you.", body: "When an athlete completes a session, Protocol detects new maxes and rep-maxes, flags the PR and updates their working weights everywhere.", image: "/screens/metrics.jpg", variant: "phone" },
       { title: "History graphs", tagline: "See the trajectory.", body: "Every metric has a history graph so you and the athlete can see progress over months, not just the last session.", image: "/screens/metrics-graph.png" },
-      { title: "Shareable milestones", tagline: "Celebrate the wins.", body: "PRs get an in-app celebration and a share card — retention you can feel.", image: "/screens/pr-card.png" },
+      { title: "Shareable milestones", tagline: "Celebrate the wins.", body: "PRs get an in-app celebration and a share card - retention you can feel.", image: "/screens/pr-card.png" },
     ],
   },
   {
     slug: "nutrition",
     title: "Nutrition",
     subtitle: "Coaching that doesn't stop at the barbell.",
-    intro: "Set macro targets, build recipes and plan the week — all inside the same app your athletes already train in.",
+    intro: "Set macro targets, build recipes and plan the week - all inside the same app your athletes already train in.",
     sections: [
       { title: "Macro targets", tagline: "Mifflin, Harris or Katch.", body: "Calculate targets from real formulas with tiers for training and rest days, and publish them to the athlete.", image: "/screens/nutrition-targets.png" },
       { title: "Food database & diary", tagline: "Thousands of UK foods.", body: "A searchable food database plus barcode lookup, so logging is quick and the numbers are right.", image: "/screens/nutrition-diary.png" },
@@ -198,7 +198,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     slug: "storefront",
     title: "Storefront & payments",
     subtitle: "Turn your coaching into a business.",
-    intro: "A branded storefront on your own Stripe account — subscriptions, one-offs and fixed programs, no extra tools.",
+    intro: "A branded storefront on your own Stripe account - subscriptions, one-offs and fixed programs, no extra tools.",
     sections: [
       { title: "Your branded storefront", tagline: "Sell at your own link.", body: "Publish products to a branded page with your logo and accent colour, and invite athletes to buy in a few clicks.", image: "/screens/storefront.png" },
       { title: "Payments, automated", tagline: "Powered by Stripe.", body: "Take card payments through your own Stripe account. Subscriptions, one-off purchases, coupons and a payments ledger, all built in.", image: "/screens/payments.png" },
@@ -230,7 +230,7 @@ export const NICHES: Niche[] = [
     slug: "strength-and-conditioning",
     audience: "S&C coaches",
     title: "Coaching software built for strength & conditioning",
-    subtitle: "Percentage-based loading, rep-maxes and section-based programming — the tools S&C coaches actually need.",
+    subtitle: "Percentage-based loading, rep-maxes and section-based programming - the tools S&C coaches actually need.",
     points: [
       "Auto-calculated working weights from each athlete's maxes",
       "Rep-maxes and 1RMs tracked natively, with PR detection",
@@ -242,7 +242,7 @@ export const NICHES: Niche[] = [
     slug: "crossfit",
     audience: "CrossFit coaches",
     title: "Programming software for CrossFit coaches",
-    subtitle: "Benchmarks, metcons and strength in one place — with a built-in gym timer your athletes will use.",
+    subtitle: "Benchmarks, metcons and strength in one place - with a built-in gym timer your athletes will use.",
     points: [
       "The Girls, Heroes and custom benchmarks as ready-made sessions",
       "For-time, AMRAP, EMOM and interval scoring",
@@ -254,7 +254,7 @@ export const NICHES: Niche[] = [
     slug: "hyrox",
     audience: "HYROX & hybrid coaches",
     title: "Software for HYROX and hybrid coaches",
-    subtitle: "Blend strength, conditioning and running in one program — and track every number that matters.",
+    subtitle: "Blend strength, conditioning and running in one program - and track every number that matters.",
     points: [
       "Mix strength percentages with conditioning and monostructural work",
       "Track times, distances, calories and rounds as metrics",
@@ -266,7 +266,7 @@ export const NICHES: Niche[] = [
     slug: "online-coaching",
     audience: "Online coaches",
     title: "The all-in-one platform for online coaches",
-    subtitle: "Programming, tracking, messaging and payments — run your whole online business in one place.",
+    subtitle: "Programming, tracking, messaging and payments - run your whole online business in one place.",
     points: [
       "A branded storefront with Stripe subscriptions and one-offs",
       "Realtime messaging, forms and check-ins",
@@ -277,11 +277,11 @@ export const NICHES: Niche[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* PRICING — fill PRICES with the real figures, everything else follows */
+/* PRICING - fill PRICES with the real figures, everything else follows */
 /* ------------------------------------------------------------------ */
 
 /**
- * Prices mirror the app's plan tiers (protocol repo `src/lib/plans.ts`) — GBP per
+ * Prices mirror the app's plan tiers (protocol repo `src/lib/plans.ts`) - GBP per
  * month, athletes-billed with a per-athlete rate that steps down as the tier
  * grows. The app is monthly-only (no annual tier), so the site is too.
  * `PRICING_CONFIRMED` hides the placeholder note; keep in sync with the app if

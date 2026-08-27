@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/brand";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { PricingCalculator } from "@/components/pricing/PricingCalculator";
 import { FinalCta } from "@/components/site/FinalCta";
-import {
-  PRICING_INCLUDES,
-  PRICING_ADDONS,
-  PRICING_FAQ,
-  PRICING_CONFIRMED,
-} from "@/lib/site";
+import { PRICING_ADDONS, PRICING_FAQ, PRICING_CONFIRMED } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -53,25 +47,6 @@ export default function PricingPage() {
         )}
         <PricingCalculator />
       </Section>
-
-      {/* What's included */}
-      <div className="border-t border-border-subtle bg-bg-surface/30">
-        <Section>
-          <SectionHeading
-            eyebrow="Every plan includes"
-            title="The whole product, on every plan."
-            subtitle="Plans differ only by how many athletes you coach — the features don't."
-          />
-          <div className="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2">
-            {PRICING_INCLUDES.map((f) => (
-              <div key={f} className="flex items-start gap-2.5">
-                <Check className="mt-0.5 size-4 shrink-0 text-accent" />
-                <span className="text-sm text-text-secondary">{f}</span>
-              </div>
-            ))}
-          </div>
-        </Section>
-      </div>
 
       {/* Add-ons */}
       <Section className="border-t border-border-subtle">

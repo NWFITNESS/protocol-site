@@ -20,12 +20,12 @@ const PROBLEMS = [
   {
     n: "02",
     title: "Sessions match how coaches actually write",
-    body: "Real programming has structure — warm-up, strength, accessory, conditioning. Protocol's section-based session model mirrors how you'd write it on paper, with supersets, tempo, rest and intent, instead of a flat list of exercises.",
+    body: "Real programming has structure - warm-up, strength, accessory, conditioning. Protocol's section-based session model mirrors how you'd write it on paper, with supersets, tempo, rest and intent, instead of a flat list of exercises.",
   },
   {
     n: "03",
     title: "Every number in one place",
-    body: "PRs, logs, benchmark results, bodyweight and metrics live together per athlete — detected automatically from completed sessions, graphed over time, and ready to act on. No more fragments across a spreadsheet, a notes app and a chat thread.",
+    body: "PRs, logs, benchmark results, bodyweight and metrics live together per athlete - detected automatically from completed sessions, graphed over time, and ready to act on. No more fragments across a spreadsheet, a notes app and a chat thread.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function WhyProtocolPage() {
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-text-secondary">
             Protocol didn&apos;t start as a business plan. It started with a coach
-            frustrated by tools that couldn&apos;t handle real programming — so it&apos;s
+            frustrated by tools that couldn&apos;t handle real programming - so it&apos;s
             built around the things that matter when you coach for a living.
           </p>
         </Container>
@@ -68,7 +68,7 @@ export default function WhyProtocolPage() {
               Write <span className="nums text-text-primary">5×3 @ 80%</span> once.
               Every athlete opens their session to their exact working weight,
               calculated from their own maxes. Hit a new PR and the number updates
-              everywhere it&apos;s used. It sounds simple — it&apos;s the thing most
+              everywhere it&apos;s used. It sounds simple - it&apos;s the thing most
               coaching tools still get wrong.
             </p>
           </div>
@@ -110,7 +110,7 @@ export default function WhyProtocolPage() {
           </h2>
           <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
             Protocol targets independent strength, S&amp;C, CrossFit and hybrid coaches
-            running real rosters — not group-class gyms, not casual fitness apps. Every
+            running real rosters - not group-class gyms, not casual fitness apps. Every
             decision favours the coach who cares about the details: the load is right,
             the structure is honest, and the whole business lives in one place.
           </p>
