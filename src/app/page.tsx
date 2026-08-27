@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Screenshot } from "@/components/ui/Screenshot";
+import { LifestyleShot } from "@/components/ui/LifestyleShot";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { FinalCta } from "@/components/site/FinalCta";
@@ -53,10 +54,20 @@ export default function Home() {
             <p className="mt-4 text-sm text-text-tertiary">{SITE.trialMicrocopy}</p>
           </div>
 
-          <div className="mx-auto mt-14 max-w-4xl">
-            <Screenshot
-              src="/screens/calendar-builder.png"
-              alt="The Protocol coach calendar builder - colour-coded sessions across the week"
+          <div className="relative mx-auto mt-14 max-w-5xl">
+            <div
+              className="pointer-events-none absolute -inset-x-6 -top-10 bottom-6 -z-10 rounded-[3rem]"
+              style={{
+                background:
+                  "radial-gradient(ellipse 55% 60% at 50% 40%, rgba(59,130,246,0.22), transparent 70%)",
+              }}
+              aria-hidden
+            />
+            <LifestyleShot
+              src="/screens/laptop-phone.png"
+              alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
+              priority
+              sizes="(min-width: 1024px) 1024px, 100vw"
             />
           </div>
         </Container>
@@ -130,24 +141,30 @@ export default function Home() {
       {/* Differentiator band */}
       <div className="border-t border-border-subtle bg-bg-surface/30">
         <Section>
-          <div className="mx-auto max-w-3xl text-center">
-            <Eyebrow>Why Protocol</Eyebrow>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
-              <BracketWrap>Percentage-based loading, done right.</BracketWrap>
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
-              Percentages are broken in most coaching tools. Protocol treats sets ×
-              reps × % of 1RM as a first-class concept and stores every athlete&apos;s
-              maxes natively - so working weights are always right, and updating a max
-              updates the whole program. It&apos;s the difference between software built
-              for coaches and software a coach built.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <Button href="/why-protocol" variant="outline">
-                See what makes Protocol different
-                <ArrowRight className="size-4" />
-              </Button>
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <Eyebrow>Why Protocol</Eyebrow>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+                <BracketWrap>Percentage-based loading, done right.</BracketWrap>
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
+                Percentages are broken in most coaching tools. Protocol treats sets ×
+                reps × % of 1RM as a first-class concept and stores every athlete&apos;s
+                maxes natively - so working weights are always right, and updating a max
+                updates the whole program. It&apos;s the difference between software built
+                for coaches and software a coach built.
+              </p>
+              <div className="mt-8">
+                <Button href="/why-protocol" variant="outline">
+                  See what makes Protocol different
+                  <ArrowRight className="size-4" />
+                </Button>
+              </div>
             </div>
+            <LifestyleShot
+              src="/screens/Coach-programming-laptop.png"
+              alt="A coach programming a session in Protocol on a laptop in the gym"
+            />
           </div>
         </Section>
       </div>
