@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/brand";
 import { Section, SectionHeading } from "@/components/site/Section";
-import { PricingTiers } from "@/components/pricing/PricingTiers";
+import { PricingCalculator } from "@/components/pricing/PricingCalculator";
 import { FinalCta } from "@/components/site/FinalCta";
 import {
   PRICING_INCLUDES,
@@ -48,10 +48,10 @@ export default function PricingPage() {
       <Section>
         {!PRICING_CONFIRMED && (
           <div className="mx-auto mb-10 max-w-2xl rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-center text-sm text-amber-300">
-            Final pricing is being confirmed — the figures below are placeholders.
+            Final pricing is being confirmed - the figures below are placeholders.
           </div>
         )}
-        <PricingTiers />
+        <PricingCalculator />
       </Section>
 
       {/* What's included */}
