@@ -29,7 +29,7 @@ export default function Home() {
           }}
           aria-hidden
         />
-        <Container className="relative pt-16 pb-0 sm:pt-24">
+        <Container className="relative pt-16 sm:pt-24">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
               <Eyebrow>Built by a coach, for coaches</Eyebrow>
@@ -53,30 +53,24 @@ export default function Home() {
             </div>
             <p className="mt-4 text-sm text-text-tertiary">{SITE.trialMicrocopy}</p>
           </div>
-
-          <div className="relative mx-auto mt-14 max-w-5xl">
-            <div
-              className="pointer-events-none absolute -inset-x-6 -top-10 bottom-0 -z-10 rounded-[3rem]"
-              style={{
-                background:
-                  "radial-gradient(ellipse 55% 60% at 50% 40%, rgba(59,130,246,0.22), transparent 70%)",
-              }}
-              aria-hidden
-            />
-            {/* Rises out of the fold: clip the bottom, round the top only */}
-            <div className="max-h-[48vh] overflow-hidden rounded-t-2xl border border-b-0 border-border-strong card-elevation sm:max-h-[500px]">
-              <picture>
-                <source media="(min-width: 640px)" srcSet="/screens/laptop-phone.png" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/screens/coach-programming-phone.png"
-                  alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
-                  className="block h-auto w-full"
-                />
-              </picture>
-            </div>
-          </div>
         </Container>
+
+        {/* Full-bleed hero image: edge-to-edge, melting off the bottom into the page */}
+        <div className="relative mt-12 sm:mt-16">
+          <div className="mx-auto max-h-[58vh] max-w-6xl overflow-hidden sm:max-h-[560px]">
+            <picture>
+              <source media="(min-width: 640px)" srcSet="/screens/laptop-phone.png" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/screens/coach-programming-phone.png"
+                alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
+                className="block h-auto w-full"
+              />
+            </picture>
+          </div>
+          {/* Fade the bottom edge into the page background */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg-base to-transparent" />
+        </div>
       </section>
 
       {/* Trust stat band */}
