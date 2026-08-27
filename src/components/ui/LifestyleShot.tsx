@@ -1,28 +1,39 @@
-import Image from "next/image";
-
 /**
  * A full-bleed lifestyle/product photograph (real device-in-situ shots), shown
- * as a rounded, bordered surface with card elevation. Unlike Screenshot, it adds
- * no browser/phone chrome - the photo already has the device in frame.
+ * at its natural aspect ratio as a rounded, bordered surface with card elevation.
+ * Unlike Screenshot, it adds no browser/phone chrome - the device is already in
+ * the shot.
+ *
+ * Pass `mobileSrc` for art direction: the portrait phone shot is served on small
+ * screens and the wide desktop shot from the `sm` breakpoint up, so a landscape
+ * image is never stretched thin on a phone.
  */
 export function LifestyleShot({
   src,
+  mobileSrc,
   alt,
   priority = false,
-  sizes = "(min-width: 1024px) 900px, 100vw",
-  className = "aspect-video",
+  className = "",
 }: {
   src: string;
+  mobileSrc?: string;
   alt: string;
   priority?: boolean;
-  sizes?: string;
   className?: string;
 }) {
+  const imgClass = `block h-auto w-full rounded-2xl border border-border-strong object-cover card-elevation ${className}`;
+  const loading = priority ? "eager" : "lazy";
+
+  if (!mobileSrc) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} alt={alt} loading={loading} className={imgClass} />;
+  }
+
   return (
-    <div
-      className={`relative w-full overflow-hidden rounded-2xl border border-border-strong card-elevation ${className}`}
-    >
-      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
-    </div>
+    <picture>
+      <source media="(min-width: 640px)" srcSet={src} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={mobileSrc} alt={alt} loading={loading} className={imgClass} />
+    </picture>
   );
 }

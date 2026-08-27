@@ -65,9 +65,10 @@ export default function Home() {
             />
             <LifestyleShot
               src="/screens/laptop-phone.png"
+              mobileSrc="/screens/coach-programming-phone.png"
               alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
               priority
-              sizes="(min-width: 1024px) 1024px, 100vw"
+              className="mx-auto max-w-xs sm:max-w-none"
             />
           </div>
         </Container>
@@ -141,26 +142,26 @@ export default function Home() {
       {/* Differentiator band */}
       <div className="border-t border-border-subtle bg-bg-surface/30">
         <Section>
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <Eyebrow>Why Protocol</Eyebrow>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
-                <BracketWrap>Percentage-based loading, done right.</BracketWrap>
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
-                Percentages are broken in most coaching tools. Protocol treats sets ×
-                reps × % of 1RM as a first-class concept and stores every athlete&apos;s
-                maxes natively - so working weights are always right, and updating a max
-                updates the whole program. It&apos;s the difference between software built
-                for coaches and software a coach built.
-              </p>
-              <div className="mt-8">
-                <Button href="/why-protocol" variant="outline">
-                  See what makes Protocol different
-                  <ArrowRight className="size-4" />
-                </Button>
-              </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <Eyebrow>Why Protocol</Eyebrow>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+              <BracketWrap>Percentage-based loading, done right.</BracketWrap>
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg">
+              Percentages are broken in most coaching tools. Protocol treats sets ×
+              reps × % of 1RM as a first-class concept and stores every athlete&apos;s
+              maxes natively - so working weights are always right, and updating a max
+              updates the whole program. It&apos;s the difference between software built
+              for coaches and software a coach built.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button href="/why-protocol" variant="outline">
+                See what makes Protocol different
+                <ArrowRight className="size-4" />
+              </Button>
             </div>
+          </div>
+          <div className="mx-auto mt-12 max-w-4xl">
             <LifestyleShot
               src="/screens/Coach-programming-laptop.png"
               alt="A coach programming a session in Protocol on a laptop in the gym"
