@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simple pricing that scales with your roster. Start free for 14 days, then pay by how many athletes you coach. Athletes are always free.",
+    "Simple pricing that scales with your roster. Start free for 30 days, then pay per athlete - from £12.50/mo, capped at £100. Athletes are always free.",
 };
 
 export default function PricingPage() {
@@ -38,8 +38,9 @@ export default function PricingPage() {
             Simple pricing that scales with your roster.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-text-secondary">
-            Start free for 14 days, then pay by how many athletes you coach.
-            Athletes are always free.
+            Start free for 30 days, then pay for the athletes you coach - no
+            tiers, no cliffs, and never more than £100 a month. Athletes are
+            always free.
           </p>
         </Container>
       </section>

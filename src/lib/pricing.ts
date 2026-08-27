@@ -1,9 +1,11 @@
 import type { PriceTier } from "./site";
 
-/** "£12.50" / "£23" / "Custom". Whole pounds show no decimals. */
+/** "£12.50" / "£23". Whole pounds show no decimals. */
+export function gbp(v: number): string {
+  return Number.isInteger(v) ? `£${v}` : `£${v.toFixed(2)}`;
+}
+
+/** "£12.50" + "/mo" for a price point. */
 export function formatTierPrice(tier: PriceTier): { amount: string; suffix: string } {
-  if (tier.monthly === null) return { amount: "Custom", suffix: "" };
-  const v = tier.monthly;
-  const amount = Number.isInteger(v) ? `£${v}` : `£${v.toFixed(2)}`;
-  return { amount, suffix: "/mo" };
+  return { amount: gbp(tier.monthly), suffix: "/mo" };
 }

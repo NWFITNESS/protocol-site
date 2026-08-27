@@ -13,7 +13,7 @@ export const SITE = {
   appUrl: "https://app.protocolapp.uk",
   signupUrl: "https://app.protocolapp.uk/auth/signup",
   signinUrl: "https://app.protocolapp.uk/auth/signin",
-  trialMicrocopy: "14-day full access. No card required.",
+  trialMicrocopy: "30-day full access. No card required.",
   ctaPrimary: "Start free trial",
 } as const;
 
@@ -289,22 +289,33 @@ export const NICHES: Niche[] = [
  */
 export const PRICING_CONFIRMED = true;
 
+/** The per-athlete plan, mirroring the app (protocol repo src/lib/plans.ts):
+ *  from a £12.50 floor at £2.50/athlete, easing down as you grow, capped at £100. */
+export const PLAN = {
+  floorMonthly: 12.5,
+  headlineRate: "£2.50",
+  capMonthly: 100,
+  seatMonthly: 5,
+  trialDays: 30,
+  annualMonthsFree: 2,
+} as const;
+
 export interface PriceTier {
   id: string;
-  name: string;
-  athleteCap: string;
-  monthly: number | null; // GBP/month, null = "Contact us"
-  perAthlete: string | null; // honest per-athlete rate subtext
+  name: string; // athlete count, e.g. "25 athletes"
+  monthly: number; // £/month at that count
+  perAthlete: string | null; // rate at that count; null = the flat cap
   tagline: string;
   highlighted?: boolean;
 }
 
+/** Representative points on the curve - the app bills your exact head-count. */
 export const PRICES: PriceTier[] = [
-  { id: "5", name: "Starter", athleteCap: "Up to 5 athletes", monthly: 12.5, perAthlete: "£2.50 per athlete", tagline: "Prove the model with your first athletes." },
-  { id: "10", name: "Coach", athleteCap: "Up to 10 athletes", monthly: 23, perAthlete: "£2.30 per athlete", tagline: "For a growing one-to-one roster." },
-  { id: "25", name: "Studio", athleteCap: "Up to 25 athletes", monthly: 52.5, perAthlete: "£2.10 per athlete", tagline: "Scale groups and 1-to-1 together.", highlighted: true },
-  { id: "50", name: "Pro", athleteCap: "Up to 50 athletes", monthly: 92.5, perAthlete: "£1.85 per athlete", tagline: "Serious volume, one system." },
-  { id: "unlimited", name: "Unlimited", athleteCap: "Unlimited athletes", monthly: 149, perAthlete: null, tagline: "No ceiling on your roster." },
+  { id: "5", name: "5 athletes", monthly: 12.5, perAthlete: "£2.50 / athlete", tagline: "The £12.50 floor - your first athletes." },
+  { id: "10", name: "10 athletes", monthly: 23, perAthlete: "£2.30 / athlete", tagline: "A growing one-to-one roster." },
+  { id: "25", name: "25 athletes", monthly: 52.5, perAthlete: "£2.10 / athlete", tagline: "Groups and one-to-one together.", highlighted: true },
+  { id: "50", name: "50 athletes", monthly: 87.5, perAthlete: "£1.75 / athlete", tagline: "Serious volume, one system." },
+  { id: "cap", name: "Unlimited", monthly: 100, perAthlete: null, tagline: "Never more than £100/mo - however big your roster." },
 ];
 
 /** Everything included in every plan. */
@@ -320,23 +331,24 @@ export const PRICING_INCLUDES: string[] = [
 ];
 
 export const PRICING_ADDONS: { title: string; body: string }[] = [
-  { title: "Storefront & payments", body: "Sell programs on your own Stripe account — subscriptions, one-offs and fixed programs. A small platform fee applies per transaction." },
-  { title: "Extra coach seats", body: "Add assistant coaches to your team for a small monthly fee per seat." },
+  { title: "Your storefront, no revenue share", body: "Sell programs on your own Stripe account - subscriptions, one-offs and fixed programs. Protocol takes no cut of your sales." },
+  { title: "Extra coach seats", body: "Add assistant coaches to your team for £5 per seat per month." },
 ];
 
 export const PRICING_FAQ: { q: string; a: string }[] = [
-  { q: "What counts as an athlete?", a: "An athlete is a person you're actively coaching in Protocol. Your plan is sized by how many active athletes you have at once." },
-  { q: "Do my athletes pay for an account?", a: "No. Athlete accounts are always free — you only pay for your coaching plan." },
-  { q: "Can I change plan later?", a: "Yes. Upgrade or downgrade anytime as your roster grows or changes; there's no contract." },
-  { q: "How does the free trial work?", a: "You get full access for 14 days, no card required. Choose a plan whenever you're ready." },
-  { q: "How do storefront payments work?", a: "Payments run through your own Stripe account, so you get paid directly. A small platform fee applies per transaction." },
-  { q: "Can I add other coaches?", a: "Yes — Teams lets you add assistant coaches with roles and roster access, billed per extra seat." },
+  { q: "What counts as an athlete?", a: "An athlete is a person you're actively coaching in Protocol. Your bill is simply your current number of active athletes - no tiers to jump between." },
+  { q: "Do my athletes pay for an account?", a: "No. Athlete accounts are always free - you only pay for your coaching plan." },
+  { q: "Is there a maximum I'll pay?", a: "Yes. You'll never pay more than £100 a month, however large your roster grows." },
+  { q: "Can I pay annually?", a: "Yes - choose annual billing and get two months free (ten months' price for twelve)." },
+  { q: "How does the free trial work?", a: "You get full access for 30 days, no card required. Subscribe whenever you're ready." },
+  { q: "How do storefront payments work?", a: "Payments run through your own Stripe account, so you're paid directly - and Protocol takes no cut of your sales." },
+  { q: "Can I add other coaches?", a: "Yes - Teams lets you add assistant coaches with roles and roster access, for £5 per extra seat per month." },
 ];
 
 export const FINAL_CTA = {
   title: "Start coaching on Protocol.",
   subtitle: "Program your first week in minutes.",
-  bullets: ["No card required", "Full access for 14 days", "Choose a plan when you're ready"],
+  bullets: ["No card required", "Full access for 30 days", "Choose a plan when you're ready"],
 };
 
 export const FOOTER = {

@@ -157,7 +157,7 @@ export default function Home() {
         <SectionHeading
           eyebrow="Pricing"
           title="Simple pricing that scales with your roster."
-          subtitle="Start free for 14 days, then pay by how many athletes you coach. Athletes are always free."
+          subtitle="Start free for 30 days, then pay per athlete - from £12.50/mo, never more than £100. Athletes are always free."
         />
         <div className="mt-12 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {PRICES.map((t) => {
@@ -176,7 +176,7 @@ export default function Home() {
                   {price.amount}
                   <span className="text-xs font-normal text-text-tertiary">{price.suffix}</span>
                 </div>
-                <div className="mt-1 nums text-xs text-text-tertiary">{t.athleteCap}</div>
+                <div className="mt-1 nums text-xs text-text-tertiary">{t.perAthlete ?? "capped"}</div>
               </div>
             );
           })}
