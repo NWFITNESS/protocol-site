@@ -34,8 +34,8 @@ export default function Home() {
             <div className="flex justify-center">
               <Eyebrow>Built by a coach, for coaches</Eyebrow>
             </div>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-text-primary sm:text-6xl">
-              The operating system for serious coaches.
+            <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
+              The operating system for <span className="text-accent">serious coaches</span>.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
               Protocol turns percentage-based programming, athlete tracking and
@@ -43,11 +43,11 @@ export default function Home() {
               program faster and coach better.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href={SITE.signupUrl} className="px-7 py-3 text-base">
+              <Button href={SITE.signupUrl} className="w-full px-8 py-4 text-base sm:w-auto sm:text-lg">
                 {SITE.ctaPrimary}
                 <ArrowRight className="size-4" />
               </Button>
-              <Button href="/features" variant="outline" className="px-7 py-3 text-base">
+              <Button href="/features" variant="outline" className="w-full px-8 py-4 text-base sm:w-auto sm:text-lg">
                 See how it works
               </Button>
             </div>
