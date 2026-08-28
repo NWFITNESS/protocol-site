@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Eyebrow, BracketWrap } from "@/components/brand";
 import { Reveal } from "@/components/Reveal";
 import { HeroForm } from "@/components/HeroForm";
+import { HeroShader } from "@/components/HeroShader";
 import { AthletePhone } from "@/components/AthletePhone";
 import { FeatureArt } from "@/components/FeatureArt";
 import { WaitlistForm } from "@/components/WaitlistForm";
@@ -88,19 +89,12 @@ export default function Home() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden pt-16">
-        {/* Full-bleed photo backdrop (portrait on mobile, laptop duo from sm up) */}
-        <picture>
-          <source media="(min-width: 640px)" srcSet="/screens/laptop-phone.png" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/screens/coach-programming-phone.png"
-            alt="Protocol open on a coach's laptop and an athlete's phone in the gym"
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
-          />
-        </picture>
-        {/* legibility overlays: darken + soft centre clearing + fade into the page */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-bg-base/55" />
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,10,11,0.2),transparent_45%,rgba(10,10,11,0.6)_78%)]" />
+        {/* WebGL plasma backdrop (reduced-motion falls back to a static cobalt gradient) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-20">
+          <HeroShader className="h-full w-full" />
+        </div>
+        {/* legibility overlays: soft centre clearing + fade into the page */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,10,11,0.35),transparent_45%,rgba(10,10,11,0.55)_78%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-bg-base" />
 
         {/* hero card */}
@@ -185,11 +179,12 @@ export default function Home() {
           aria-hidden
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
-        {/* Scrim: darken for legibility, solid at the edges so it blends into the page */}
-        <div aria-hidden className="absolute inset-0 -z-10 bg-bg-base/55" />
+        {/* Scrim: light touch so the photo shows through, solid only at the top/bottom
+            edges so it blends into the page; cards carry their own background */}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-bg-base/25" />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-bg-base via-bg-base/25 to-bg-base"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-bg-base via-transparent to-bg-base"
         />
 
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
