@@ -10,11 +10,31 @@ import { Header, Footer } from "@/components/site/Chrome";
 const TITLE = "Protocol - Coaching software, built by coaches";
 const DESCRIPTION =
   "Join the waitlist for Protocol, the all-in-one platform to program, track and grow your online fitness, nutrition and wellbeing coaching. 30-day free trial. Built by coaches, for coaches.";
+// The live host is www (the apex 308-redirects to it), so canonical/OG point there.
+const BASE = "https://www.protocolapp.uk";
+
+const JSON_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Protocol",
+    url: BASE,
+    logo: `${BASE}/icon.svg`,
+    description: DESCRIPTION,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Protocol",
+    url: BASE,
+  },
+];
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://protocolapp.uk"),
+  metadataBase: new URL(BASE),
   title: TITLE,
   description: DESCRIPTION,
+  alternates: { canonical: "/" },
   keywords: [
     "coaching software",
     "online coaching platform",
@@ -28,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description: DESCRIPTION,
-    url: "https://protocolapp.uk",
+    url: BASE,
     siteName: "Protocol",
   },
   twitter: {
@@ -49,6 +69,10 @@ export default function RootLayout({
         className="flex min-h-full flex-col bg-bg-base text-text-primary"
         style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <Header />
         <main className="flex-1 overflow-x-hidden">{children}</main>
         <Footer />
