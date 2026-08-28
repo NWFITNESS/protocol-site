@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Protocol brand tokens — mirrored from the app so the site and product feel
+/* Protocol brand tokens - mirrored from the app so the site and product feel
    identical. */
 @theme {
   --color-bg-base: #0a0a0b;
@@ -126,7 +126,7 @@ body {
   animation: tileSheen 4.6s ease-in-out infinite;
 }
 
-/* Slow sweep of the timer's progress ring — reads as a live clock. */
+/* Slow sweep of the timer's progress ring - reads as a live clock. */
 @keyframes ringSpin {
   to {
     transform: rotate(360deg);

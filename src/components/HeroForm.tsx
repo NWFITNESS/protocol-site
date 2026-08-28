@@ -6,7 +6,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * The hero's quick email capture. On a valid email it stashes it and smooth-
- * scrolls to the full multi-step form, which reads the stash and pre-fills — so
+ * scrolls to the full multi-step form, which reads the stash and pre-fills - so
  * the visitor is already one step in. Invalid/empty just jumps to the form.
  */
 export function HeroForm() {
@@ -30,7 +30,7 @@ export function HeroForm() {
         sessionStorage.setItem("waitlist_email", val);
         window.dispatchEvent(new CustomEvent("waitlist-prefill", { detail: val }));
       } catch {
-        /* storage blocked — the field on the full form still works */
+        /* storage blocked - the field on the full form still works */
       }
     }
     jumpToForm();

@@ -1,5 +1,5 @@
 /**
- * Cohesive, on-brand "app UI" tiles for the feature cards — rendered in code
+ * Cohesive, on-brand "app UI" tiles for the feature cards - rendered in code
  * (not screenshots or stock) so they stay crisp and consistent. Each fills its
  * card header. Decorative.
  */

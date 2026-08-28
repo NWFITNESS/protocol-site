@@ -13,7 +13,7 @@ export function Parallax({
   className = "",
 }: {
   children: ReactNode;
-  /** Positive = moves up as you scroll down. Keep small (0.1–0.3). */
+  /** Positive = moves up as you scroll down. Keep small (0.1-0.3). */
   speed?: number;
   className?: string;
 }) {

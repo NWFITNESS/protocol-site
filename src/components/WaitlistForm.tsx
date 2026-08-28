@@ -17,7 +17,7 @@ interface Field {
   placeholder?: string;
   options?: string[];
   required?: boolean;
-  /** The referral opt-in gate — a "yes" reveals the two referral steps. */
+  /** The referral opt-in gate - a "yes" reveals the two referral steps. */
   gate?: boolean;
 }
 
@@ -25,19 +25,19 @@ const REFERRAL_YES = "Yes, count me in";
 
 const BASE_FIELDS: Field[] = [
   { key: "full_name", type: "text", label: "First, what's your name?", help: "So we know how to greet you.", placeholder: "Full name", required: true },
-  { key: "email", type: "email", label: "Where should we send your invite?", help: "We'll email you the moment your 14-day free trial is ready.", placeholder: "you@yourbusiness.com", required: true },
+  { key: "email", type: "email", label: "Where should we send your invite?", help: "We'll email you the moment your 30-day free trial is ready.", placeholder: "you@yourbusiness.com", required: true },
   { key: "business_name", type: "text", label: "What's your business called?", help: "Your coaching brand or business name.", placeholder: "e.g. Apex Performance" },
   { key: "role", type: "text", label: "And your role?", help: "Founder, head coach, nutritionist, consultant…", placeholder: "e.g. Head coach" },
   { key: "niche", type: "choice", label: "What's your coaching niche?", help: "Pick the closest fit.", options: ["Fitness", "Nutrition", "Health", "Wellbeing", "Other"] },
-  { key: "active_clients", type: "choice", label: "How many clients do you coach right now?", help: "A rough number is fine.", options: ["Just starting", "1–10", "11–25", "26–50", "51–100", "100+"] },
+  { key: "active_clients", type: "choice", label: "How many clients do you coach right now?", help: "A rough number is fine.", options: ["Just starting", "1-10", "11-25", "26-50", "51-100", "100+"] },
   { key: "programs", type: "textarea", label: "What do you deliver online?", help: "A line on the programs or services you run.", placeholder: "e.g. 1-to-1 strength coaching, HYROX prep, nutrition plans…" },
-  { key: "timeline", type: "choice", label: "When might you switch platforms?", help: "No commitment — it just helps us plan.", options: ["Immediately", "Within 30 days", "In 1–3 months", "Just exploring"] },
+  { key: "timeline", type: "choice", label: "When might you switch platforms?", help: "No commitment - it just helps us plan.", options: ["Immediately", "Within 30 days", "In 1-3 months", "Just exploring"] },
   { key: "wants_referral", type: "choice", label: "Refer other coaches, get 2 months free?", help: "When a coach you refer joins Protocol, you get 2 months on us.", options: [REFERRAL_YES, "Maybe later"], gate: true },
 ];
 
 const REFERRAL_FIELDS: Field[] = [
-  { key: "referral_count", type: "choice", label: "How many coaches could you refer?", help: "Ballpark is fine.", options: ["1–2", "3–5", "6–10", "10+"] },
-  { key: "referral_contacts", type: "textarea", label: "Who should we reach out to?", help: "Names or emails of coaches you'd refer. Optional — we'll only send them a friendly invite.", placeholder: "Jane – jane@…, Mo – mo@…" },
+  { key: "referral_count", type: "choice", label: "How many coaches could you refer?", help: "Ballpark is fine.", options: ["1-2", "3-5", "6-10", "10+"] },
+  { key: "referral_contacts", type: "textarea", label: "Who should we reach out to?", help: "Names or emails of coaches you'd refer. Optional - we'll only send them a friendly invite.", placeholder: "Jane - jane@…, Mo - mo@…" },
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,6 +50,14 @@ const ArrowRight = () => (
 const Check = () => (
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
     <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+const ShareIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <circle cx="18" cy="5" r="3" />
+    <circle cx="6" cy="12" r="3" />
+    <circle cx="18" cy="19" r="3" />
+    <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" />
   </svg>
 );
 
@@ -197,12 +205,33 @@ export function WaitlistForm() {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } catch {
-        /* clipboard blocked — the link is visible to copy manually */
+        /* clipboard blocked - the link is visible to copy manually */
       }
     }
-    const shareText = encodeURIComponent(
-      "I just joined the waitlist for Protocol — coaching software built by coaches. Join with my link and we both get early access:",
-    );
+
+    const shareMsg =
+      "I just joined the waitlist for Protocol - coaching software built by coaches. Join with my link and we both get early access:";
+    const t = encodeURIComponent(shareMsg);
+    const u = encodeURIComponent(shareUrl);
+
+    async function nativeShare() {
+      try {
+        if (typeof navigator !== "undefined" && navigator.share) {
+          await navigator.share({ title: "Protocol", text: shareMsg, url: shareUrl });
+        } else {
+          await copy();
+        }
+      } catch {
+        /* user dismissed the share sheet */
+      }
+    }
+
+    const shareLinks = [
+      { label: "WhatsApp", href: `https://wa.me/?text=${t}%20${u}` },
+      { label: "X", href: `https://twitter.com/intent/tweet?text=${t}&url=${u}` },
+      { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+      { label: "Email", href: `mailto:?subject=${encodeURIComponent("You should see this coaching platform")}&body=${t}%20${u}` },
+    ];
 
     return (
       <div className="rise mx-auto max-w-xl rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center card-elevation sm:p-10">
@@ -214,13 +243,14 @@ export function WaitlistForm() {
         </h3>
         <p className="mx-auto mt-3 max-w-md text-text-secondary">
           We'll email <span className="text-text-primary">{answers.email}</span> the moment your
-          14-day free trial is ready. Keep an eye on your inbox.
+          30-day free trial is ready. Keep an eye on your inbox.
         </p>
 
         <div className="mt-8 rounded-xl border border-accent/30 bg-accent-muted/40 p-5 text-left">
-          <p className="text-sm font-semibold text-text-primary">Skip the queue — earn 2 months free</p>
+          <p className="text-sm font-semibold text-text-primary">Refer coaches, get 2 months free - each</p>
           <p className="mt-1 text-sm text-text-secondary">
-            Share your link. When a coach joins through it, you get two months of Protocol on us.
+            Every coach who joins Protocol through your link earns you two months on us - and they
+            stack. Share it once and keep earning.
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row">
             <input
@@ -231,26 +261,30 @@ export function WaitlistForm() {
             />
             <button
               onClick={copy}
-              className="shrink-0 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+              className="shrink-0 rounded-lg border border-border-subtle bg-bg-base px-4 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-border-strong"
             >
               {copied ? "Copied" : "Copy link"}
             </button>
           </div>
-          <div className="mt-3 flex flex-wrap gap-3 text-sm">
-            <a
-              className="text-accent hover:underline"
-              href={`https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              onClick={() => void nativeShare()}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
             >
-              Share on WhatsApp
-            </a>
-            <a
-              className="text-accent hover:underline"
-              href={`mailto:?subject=${encodeURIComponent("You should see this coaching platform")}&body=${shareText}%20${encodeURIComponent(shareUrl)}`}
-            >
-              Share by email
-            </a>
+              <ShareIcon />
+              Share
+            </button>
+            {shareLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-lg border border-border-subtle bg-bg-base px-3.5 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text-primary"
+              >
+                {s.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -274,7 +308,7 @@ export function WaitlistForm() {
           You're all set{firstName ? `, ${firstName}` : ""}.
         </h3>
         <p className="mt-2 text-text-secondary">
-          Confirm your spot on the Protocol waitlist — 14-day free trial, no card required.
+          Confirm your spot on the Protocol waitlist - 30-day free trial, no card required.
         </p>
         <dl className="mt-6 divide-y divide-border-subtle/70 rounded-xl border border-border-subtle">
           {summary
@@ -393,7 +427,7 @@ export function WaitlistForm() {
 
         {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
 
-        {/* nav — choices auto-advance, so only show Continue for input steps */}
+        {/* nav - choices auto-advance, so only show Continue for input steps */}
         <div className="mt-6 flex items-center justify-between">
           <button
             onClick={back}

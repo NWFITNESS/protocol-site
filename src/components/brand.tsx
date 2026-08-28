@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Mark } from "@/app/Mark";
 
-/** Cobalt square brackets — the system-wide framing device. Always paired. */
+/** Cobalt square brackets - the system-wide framing device. Always paired. */
 export function BracketWrap({
   children,
   className = "",

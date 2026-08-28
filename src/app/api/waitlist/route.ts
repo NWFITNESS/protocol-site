@@ -1,7 +1,7 @@
 /**
  * Waitlist signup handler. Inserts into the shared Protocol Supabase
  * (`public.waitlist_signups`, owned by the app repo's migrations) over PostgREST
- * with the anon key + an insert-only RLS policy — so no service-role key or
+ * with the anon key + an insert-only RLS policy - so no service-role key or
  * Supabase SDK lives on the marketing site.
  *
  * Requires env on the site's Vercel project:
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
       body: JSON.stringify(row),
     });
 
-    // Already on the list (unique email) — treat as success with the same code.
+    // Already on the list (unique email) - treat as success with the same code.
     if (res.status === 409) {
       return Response.json({ ok: true, alreadyJoined: true, referral_code: code });
     }

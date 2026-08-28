@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 // Self-hosted fonts (via @fontsource) instead of next/font/google, so Vercel's
-// Turbopack build never has to resolve Google Fonts at build time — which it
+// Turbopack build never has to resolve Google Fonts at build time - which it
 // intermittently fails to do. The CSS variables are defined in globals.css.
 import "@fontsource-variable/inter";
 import "@fontsource-variable/orbitron";
 import "./globals.css";
 import { Header, Footer } from "@/components/site/Chrome";
 
-const TITLE = "Protocol — Coaching software, built by coaches";
+const TITLE = "Protocol - Coaching software, built by coaches";
 const DESCRIPTION =
-  "Join the waitlist for Protocol, the all-in-one platform to program, track and grow your online fitness, nutrition and wellbeing coaching. 14-day free trial. Built by coaches, for coaches.";
+  "Join the waitlist for Protocol, the all-in-one platform to program, track and grow your online fitness, nutrition and wellbeing coaching. 30-day free trial. Built by coaches, for coaches.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://protocolapp.uk"),

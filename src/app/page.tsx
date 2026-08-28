@@ -64,13 +64,13 @@ const ATHLETE_BULLETS = [
 
 const STEPS = [
   { n: "01", title: "Join the waitlist", body: "Takes about thirty seconds. Only your name and email are required." },
-  { n: "02", title: "Get early access", body: "We invite coaches in waves. When your spot opens, your 14-day free trial is ready." },
+  { n: "02", title: "Get early access", body: "We invite coaches in waves. When your spot opens, your 30-day free trial is ready." },
   { n: "03", title: "Refer and earn", body: "Share your link. For every coach who joins through it, you get two months free." },
 ];
 
 const FAQ = [
   { q: "When does Protocol launch?", a: "We're onboarding coaches in waves. Join the waitlist and we'll invite you the moment your spot opens." },
-  { q: "What will it cost?", a: "Plans start from £12.50 a month and scale with your athlete count. Every waitlist member gets a 14-day free trial, no card required." },
+  { q: "What will it cost?", a: "Plans start from £12.50 a month and scale with your athlete count. Every waitlist member gets a 30-day free trial, no card required." },
   { q: "Who is Protocol for?", a: "Online coaches across fitness, strength, nutrition, health and wellbeing, from solo coaches to full teams." },
   { q: "How does the 2 months free work?", a: "After you join, you'll get a personal share link. When a coach signs up through it and starts their trial, we add two months to your plan, free." },
 ];
@@ -138,13 +138,13 @@ export default function Home() {
             </h1>
             <p className="mx-auto mt-3 max-w-md text-sm text-text-secondary sm:text-base">
               The all-in-one platform to program, track and grow your online fitness, nutrition and
-              wellbeing coaching. Join the waitlist for early access and a 14-day free trial.
+              wellbeing coaching. Join the waitlist for early access and a 30-day free trial.
             </p>
 
             <HeroForm />
 
             <p className="mt-3 text-xs text-text-tertiary">
-              14-day free trial. No card required. Refer coaches and get 2 months free.
+              30-day free trial. No card required. Refer coaches and get 2 months free.
             </p>
           </div>
         </div>
@@ -339,7 +339,7 @@ export default function Home() {
               Be first on Protocol.
             </h2>
             <p className="mt-4 text-text-secondary">
-              Reserve your spot and your 14-day free trial. A few quick questions and you're in.
+              Reserve your spot and your 30-day free trial. A few quick questions and you're in.
             </p>
           </Reveal>
           <WaitlistForm />

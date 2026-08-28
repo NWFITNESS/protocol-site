@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/brand";
 
 /** Minimal sticky header for the waitlist site: logo + a single CTA that
- *  scrolls to the form. Intentionally has no full-site nav — this branch ships
+ *  scrolls to the form. Intentionally has no full-site nav - this branch ships
  *  only the waitlist. */
 export function Header() {
   return (

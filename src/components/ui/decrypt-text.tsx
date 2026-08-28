@@ -4,7 +4,7 @@ import * as React from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-/* Decrypt Text — from Motiq (https://motiq.dev/components/decrypt-text).
+/* Decrypt Text - from Motiq (https://motiq.dev/components/decrypt-text).
    MIT licensed. Zero runtime dependencies. */
 
 /* -------------------------------------------------------------------------- */
@@ -41,7 +41,7 @@ function useReducedMotion(): boolean {
 }
 
 /**
- * Returns whether the referenced element is currently worth animating — i.e.
+ * Returns whether the referenced element is currently worth animating - i.e.
  * on-screen AND the tab is visible. Use it to pause per-frame work, autoplay,
  * or streaming when the component scrolls away or the tab is backgrounded.
  */
@@ -115,7 +115,7 @@ export interface DecryptTextProps extends Omit<React.HTMLAttributes<HTMLElement>
 }
 
 interface CharItem {
-  /** Index into the flat character list — drives the stagger ramp. */
+  /** Index into the flat character list - drives the stagger ramp. */
   i: number;
   ch: string;
 }
@@ -130,10 +130,10 @@ const POOL_TERMINAL = "abcdef0123456789$#%&*+=/|_~";
 const HOVER_COOLDOWN = 1500;
 /** Extra ms added to `speed` for the per-char cycle jitter ceiling. */
 const CYCLE_SPREAD = 35;
-/** Accent flash duration on lock-in (ms) — matches the prototype. */
+/** Accent flash duration on lock-in (ms) - matches the prototype. */
 const FLASH_MS = 420;
 
-/** mulberry32 — no Math.random at render or module scope (SSR-stable). */
+/** mulberry32 - no Math.random at render or module scope (SSR-stable). */
 function makeRng(seed: number) {
   let a = seed >>> 0;
   return () => {
@@ -149,7 +149,7 @@ function makeRng(seed: number) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * DecryptText — copy that arrives decoded rather than typed.
+ * DecryptText - copy that arrives decoded rather than typed.
  *
  * Every glyph is already boiling at t=0; character *i* locks at
  * `startDelay + i·stagger ± jitter`, so the line resolves in a ragged
@@ -157,10 +157,10 @@ function makeRng(seed: number) {
  * behind a 420ms accent flash with a decaying glow.
  *
  * Server markup and reduced motion render the REAL string (progressive
- * enhancement — the scramble only ever exists after mount). The animated glyph
+ * enhancement - the scramble only ever exists after mount). The animated glyph
  * layer is `aria-hidden`; the readable string lives in a visually-hidden
  * sibling, so assistive tech never hears the scramble. One rAF loop per
- * instance writes `textContent` + a state attribute only — zero layout writes.
+ * instance writes `textContent` + a state attribute only - zero layout writes.
  * Clean-room original.
  */
 function DecryptTextBase({
