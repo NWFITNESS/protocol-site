@@ -176,33 +176,50 @@ export default function Home() {
       </div>
 
       {/* ── Why Protocol ─────────────────────────────────────────────────── */}
-      <Section id="why">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Why Protocol</Eyebrow>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            The tools you actually coach with, in one place.
-          </h2>
-          <p className="mt-4 text-text-secondary">
-            Most coaching software is built by people who've never written a program. Protocol isn't.
-          </p>
-        </Reveal>
+      <section id="why" className="relative overflow-hidden py-16 sm:py-20">
+        {/* Full-bleed coach-at-laptop photo behind the section */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/screens/Coach-programming-laptop.png"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        {/* Scrim: darken for legibility, solid at the edges so it blends into the page */}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-bg-base/55" />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-bg-base via-bg-base/25 to-bg-base"
+        />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
-          {VALUES.map((v, i) => (
-            <Reveal key={v.title} delay={i * 70}>
-              <div className="flex h-full gap-4 rounded-2xl border border-border-subtle bg-bg-surface p-6 card-elevation">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent-muted text-accent">
-                  <v.icon className="size-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold text-text-primary">{v.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">{v.body}</p>
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <Eyebrow>Why Protocol</Eyebrow>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+              The tools you actually coach with, in one place.
+            </h2>
+            <p className="mt-4 text-text-secondary">
+              Most coaching software is built by people who've never written a program. Protocol isn't.
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-4 sm:grid-cols-2">
+            {VALUES.map((v, i) => (
+              <Reveal key={v.title} delay={i * 70}>
+                <div className="flex h-full gap-4 rounded-2xl border border-border-subtle bg-bg-surface p-6 card-elevation">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent-muted text-accent">
+                    <v.icon className="size-5" />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-text-primary">{v.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">{v.body}</p>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* ── Athlete app showcase (real screenshot + floating chips) ──────── */}
       <Section className="border-t border-border-subtle/60 bg-bg-surface/20">
